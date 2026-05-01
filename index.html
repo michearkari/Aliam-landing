@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aliam — Inteligência aplicada a negócios</title>
+<meta name="description" content="A Aliam constrói agentes inteligentes que assumem o operacional das empresas.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #0F1729;
+  --navy-deep: #0A1020;
+  --navy-soft: #1A2440;
+  --white: #FFFFFF;
+  --white-soft: #F4F5F8;
+  --ink-soft: #C5C8D4;
+  --ink-mute: #8A8FA3;
+  --violet: #8B7FFF;
+  --violet-glow: rgba(139, 127, 255, 0.15);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.serif { font-family: 'Instrument Serif', serif; }
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ===== ATMOSPHERE ===== */
+.atmosphere {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+
+.glow-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -150px;
+  background: radial-gradient(circle, rgba(139, 127, 255, 0.25), transparent 70%);
+}
+
+.glow-2 {
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  right: -100px;
+  background: radial-gradient(circle, rgba(139, 127, 255, 0.12), transparent 70%);
+}
+
+.grain {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+main { position: relative; z-index: 1; }
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 22px 0;
+  background: rgba(15, 23, 41, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s ease;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  position: relative;
+}
+
+.logo-mark::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 4px;
+  background-image: 
+    radial-gradient(circle 1.2px at 2px 2px, var(--navy) 100%, transparent 100%),
+    radial-gradient(circle 1.2px at 12px 2px, var(--navy) 100%, transparent 100%),
+    radial-gradient(circle 1.2px at 7px 2px, var(--navy) 100%, transparent 100%);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+nav ul a { transition: color 0.2s ease; }
+nav ul a:hover { color: var(--white); }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--violet);
+  border: 1px solid var(--violet);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.nav-cta:hover {
+  background: #9D92FF;
+  border-color: #9D92FF;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 127, 255, 0.35);
+}
+
+.nav-cta:active {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--navy);
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 180px 0 140px;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 880px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-bottom: 32px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.eyebrow-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--violet);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.eyebrow-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--violet);
+  opacity: 0.4;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+.hero h1 {
+  font-size: clamp(44px, 7vw, 86px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -2.5px;
+  margin-bottom: 32px;
+}
+
+.hero h1 .accent {
+  font-weight: 500;
+  color: var(--violet);
+}
+
+.hero-sub {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 44px;
+  font-weight: 400;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--white);
+  color: var(--navy);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.12);
+}
+
+.btn-primary:active {
+  background: var(--violet);
+  color: var(--white);
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(139, 127, 255, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--line-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+}
+
+.btn-secondary:active {
+  background: var(--violet);
+  color: var(--white);
+  border-color: var(--violet);
+}
+
+.btn-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* ===== HERO VISUAL ELEMENT ===== */
+.hero-visual {
+  position: absolute;
+  top: 50%;
+  right: -60px;
+  transform: translateY(-50%);
+  width: 380px;
+  height: 380px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.hero-visual svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1100px) {
+  .hero-visual { display: none; }
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 20px;
+}
+
+/* ===== OBJETIVO ===== */
+.objetivo {
+  border-top: 1px solid var(--line);
+}
+
+.objetivo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.objetivo-head h2 {
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 28px;
+}
+
+.objetivo-head h2 .ital {
+  font-weight: 500;
+  color: var(--violet);
+}
+
+.objetivo-head p {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.objetivo-points {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.point {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  align-items: start;
+  transition: padding 0.3s ease;
+}
+
+.point:hover { padding-left: 8px; }
+
+.point:last-child { border-bottom: 1px solid var(--line); }
+
+.point-num {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--violet);
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.point-title {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+
+.point-desc {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ===== CONTATO ===== */
+.contato {
+  text-align: center;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+.contato-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, var(--violet-glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contato-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.contato h2 {
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+
+.contato h2 .ital {
+  font-weight: 500;
+  color: var(--violet);
+}
+
+.contato p {
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-bottom: 44px;
+  line-height: 1.6;
+}
+
+.contato-cta-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 0 36px;
+  background: var(--navy-deep);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-info {
+  font-size: 13px;
+  color: var(--ink-mute);
+  text-align: right;
+}
+
+.footer-info p:first-child { margin-bottom: 4px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .container { padding: 0 22px; }
+  nav ul { display: none; }
+  .hero { padding: 140px 0 90px; }
+  section { padding: 80px 0; }
+  .objetivo-grid { grid-template-columns: 1fr; gap: 48px; }
+  .point { grid-template-columns: 40px 1fr; gap: 18px; padding: 22px 0; }
+  .point-num { font-size: 26px; }
+  .footer-grid { flex-direction: column; align-items: flex-start; }
+  .footer-info { text-align: left; }
+}
+
+/* ===== ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+<body>
+
+<div class="atmosphere">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="grain"></div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <span class="logo-mark">A</span>
+      <span>aliam</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#objetivo">Objetivo</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <a href="#contato" class="nav-cta">Conversar →</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow"><span class="eyebrow-pulse"></span> Inteligência aplicada a negócios</span>
+      <h1>Agentes inteligentes que assumem <span class="accent">o operacional</span> da sua empresa.</h1>
+      <p class="hero-sub">A Aliam constrói funcionários digitais sob medida — soluções que conversam, decidem e executam tarefas repetitivas, 24 horas por dia, direto nos canais que sua empresa já usa.</p>
+      <div class="hero-cta-row">
+        <a href="#contato" class="btn btn-primary">
+          Conversar com a Aliam
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="#objetivo" class="btn btn-secondary">Nosso objetivo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#8B7FFF" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#8B7FFF" stop-opacity="0.1"/>
+        </linearGradient>
+        <radialGradient id="nodeGrad">
+          <stop offset="0%" stop-color="#8B7FFF"/>
+          <stop offset="100%" stop-color="#8B7FFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      
+      <!-- Outer ring -->
+      <circle cx="200" cy="200" r="180" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" stroke-dasharray="2,4"/>
+      <circle cx="200" cy="200" r="130" fill="none" stroke="url(#lineGrad)" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="80" fill="none" stroke="url(#lineGrad)" stroke-width="0.5"/>
+      
+      <!-- Connection lines -->
+      <line x1="200" y1="200" x2="320" y2="120" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
+      <line x1="200" y1="200" x2="80" y2="100" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
+      <line x1="200" y1="200" x2="100" y2="310" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
+      <line x1="200" y1="200" x2="320" y2="290" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
+      <line x1="200" y1="200" x2="280" y2="60" stroke="#8B7FFF" stroke-width="0.6" opacity="0.3"/>
+      <line x1="200" y1="200" x2="60" y2="220" stroke="#8B7FFF" stroke-width="0.6" opacity="0.3"/>
+      
+      <!-- Center node -->
+      <circle cx="200" cy="200" r="14" fill="#8B7FFF" opacity="0.9"/>
+      <circle cx="200" cy="200" r="22" fill="url(#nodeGrad)" opacity="0.6"/>
+      
+      <!-- Outer nodes -->
+      <circle cx="320" cy="120" r="6" fill="#8B7FFF"/>
+      <circle cx="80" cy="100" r="6" fill="#8B7FFF"/>
+      <circle cx="100" cy="310" r="6" fill="#8B7FFF"/>
+      <circle cx="320" cy="290" r="6" fill="#8B7FFF"/>
+      <circle cx="280" cy="60" r="4" fill="#8B7FFF" opacity="0.7"/>
+      <circle cx="60" cy="220" r="4" fill="#8B7FFF" opacity="0.7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- OBJETIVO -->
+<section class="objetivo" id="objetivo">
+  <div class="container">
+    <div class="objetivo-grid">
+      <div class="objetivo-head reveal">
+        <span class="section-tag">Objetivo</span>
+        <h2>Cada empresa tem rotina <span class="ital">repetitiva</span> sugando tempo de quem deveria estar gerindo.</h2>
+        <p>A Aliam desenvolve agentes inteligentes que assumem essas tarefas — para que sua equipe recupere horas e foque no que só humano faz bem: pensar estratégia, decidir, criar.</p>
+      </div>
+
+      <div class="objetivo-points">
+        <div class="point reveal">
+          <div class="point-num">i.</div>
+          <div>
+            <div class="point-title">Soluções sob medida</div>
+            <div class="point-desc">Cada agente é desenhado para uma dor específica do seu negócio. Não vendemos tecnologia genérica — vendemos a tarefa resolvida.</div>
+          </div>
+        </div>
+
+        <div class="point reveal">
+          <div class="point-num">ii.</div>
+          <div>
+            <div class="point-title">Direto onde sua empresa já está</div>
+            <div class="point-desc">Atende clientes pelo WhatsApp, integra-se aos sistemas existentes, opera nos canais que sua equipe e seus clientes já usam.</div>
+          </div>
+        </div>
+
+        <div class="point reveal">
+          <div class="point-num">iii.</div>
+          <div>
+            <div class="point-title">Operação contínua</div>
+            <div class="point-desc">24 horas por dia, sem pausas, sem feriados. Atendimentos simultâneos sem perda de qualidade nem aumento de custo.</div>
+          </div>
+        </div>
+
+        <div class="point reveal">
+          <div class="point-num">iv.</div>
+          <div>
+            <div class="point-title">Escalável por natureza</div>
+            <div class="point-desc">Cresce junto com sua empresa sem precisar contratar mais gente para tarefas que podem ser automatizadas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="contato-bg"></div>
+  <div class="container">
+    <div class="contato-inner reveal">
+      <span class="section-tag">Contato</span>
+      <h2>Vamos conversar sobre <span class="ital">a sua operação?</span></h2>
+      <p>Conte qual rotina hoje consome o tempo da sua equipe. Em uma conversa de 30 minutos, mostramos como um agente da Aliam pode resolver isso.</p>
+      <div class="contato-cta-row">
+        <a href="https://wa.me/554988132974?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20a%20Aliam." target="_blank" class="btn btn-primary">
+          Conversar pelo WhatsApp
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="mailto:contato@aliam.com.br" class="btn btn-secondary">Enviar e-mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <a href="#" class="logo">
+        <span class="logo-mark">A</span>
+        <span>aliam</span>
+      </a>
+      <div class="footer-info">
+        <p>Inteligência aplicada a negócios.</p>
+        <p>© 2026 Aliam · Todos os direitos reservados</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, idx) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), idx * 90);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+  header.style.padding = window.pageYOffset > 80 ? '14px 0' : '22px 0';
+});
+</script>
+
+</body>
+</html>
