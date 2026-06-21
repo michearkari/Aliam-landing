@@ -1,722 +1,1581 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aliam — Inteligência aplicada a negócios</title>
-<meta name="description" content="A Aliam constrói agentes inteligentes que assumem o operacional das empresas.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --navy: #0F1729;
-  --navy-deep: #0A1020;
-  --navy-soft: #1A2440;
-  --white: #FFFFFF;
-  --white-soft: #F4F5F8;
-  --ink-soft: #C5C8D4;
-  --ink-mute: #8A8FA3;
-  --violet: #8B7FFF;
-  --violet-glow: rgba(139, 127, 255, 0.15);
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.16);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', -apple-system, sans-serif;
-  background: var(--navy);
-  color: var(--white);
-  line-height: 1.55;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-.serif { font-family: 'Instrument Serif', serif; }
-
-a { color: inherit; text-decoration: none; }
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* ===== ATMOSPHERE ===== */
-.atmosphere {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.5;
-}
-
-.glow-1 {
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  left: -150px;
-  background: radial-gradient(circle, rgba(139, 127, 255, 0.25), transparent 70%);
-}
-
-.glow-2 {
-  width: 500px;
-  height: 500px;
-  top: 40%;
-  right: -100px;
-  background: radial-gradient(circle, rgba(139, 127, 255, 0.12), transparent 70%);
-}
-
-.grain {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
-}
-
-main { position: relative; z-index: 1; }
-
-/* ===== HEADER ===== */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 22px 0;
-  background: rgba(15, 23, 41, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--line);
-  transition: padding 0.3s ease;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-}
-
-.logo-mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--white);
-  color: var(--navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  position: relative;
-}
-
-.logo-mark::after {
-  content: '';
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 4px;
-  background-image: 
-    radial-gradient(circle 1.2px at 2px 2px, var(--navy) 100%, transparent 100%),
-    radial-gradient(circle 1.2px at 12px 2px, var(--navy) 100%, transparent 100%),
-    radial-gradient(circle 1.2px at 7px 2px, var(--navy) 100%, transparent 100%);
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 36px;
-  font-size: 14px;
-  color: var(--ink-soft);
-  font-weight: 400;
-}
-
-nav ul a { transition: color 0.2s ease; }
-nav ul a:hover { color: var(--white); }
-
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: var(--violet);
-  border: 1px solid var(--violet);
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--white);
-  transition: all 0.2s ease;
-  font-family: inherit;
-}
-
-.nav-cta:hover {
-  background: #9D92FF;
-  border-color: #9D92FF;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(139, 127, 255, 0.35);
-}
-
-.nav-cta:active {
-  background: var(--white);
-  border-color: var(--white);
-  color: var(--navy);
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
-}
-
-/* ===== HERO ===== */
-.hero {
-  padding: 180px 0 140px;
-  position: relative;
-}
-
-.hero-content {
-  max-width: 880px;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px 7px 10px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--ink-soft);
-  margin-bottom: 32px;
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.eyebrow-pulse {
-  width: 7px;
-  height: 7px;
-  background: var(--violet);
-  border-radius: 50%;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.eyebrow-pulse::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: var(--violet);
-  opacity: 0.4;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.5); opacity: 0; }
-}
-
-.hero h1 {
-  font-size: clamp(44px, 7vw, 86px);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -2.5px;
-  margin-bottom: 32px;
-}
-
-.hero h1 .accent {
-  font-weight: 500;
-  color: var(--violet);
-}
-
-.hero-sub {
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  max-width: 600px;
-  margin-bottom: 44px;
-  font-weight: 400;
-}
-
-.hero-cta-row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 15px 28px;
-  border-radius: 10px;
-  font-weight: 500;
-  font-size: 15px;
-  font-family: inherit;
-  transition: all 0.25s ease;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background: var(--white);
-  color: var(--navy);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.12);
-}
-
-.btn-primary:active {
-  background: var(--violet);
-  color: var(--white);
-  transform: translateY(0);
-  box-shadow: 0 4px 14px rgba(139, 127, 255, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--white);
-  border: 1px solid var(--line-strong);
-}
-
-.btn-secondary:hover {
-  border-color: var(--violet);
-  color: var(--violet);
-}
-
-.btn-secondary:active {
-  background: var(--violet);
-  color: var(--white);
-  border-color: var(--violet);
-}
-
-.btn-arrow {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-
-.btn:hover .btn-arrow { transform: translateX(3px); }
-
-/* ===== HERO VISUAL ELEMENT ===== */
-.hero-visual {
-  position: absolute;
-  top: 50%;
-  right: -60px;
-  transform: translateY(-50%);
-  width: 380px;
-  height: 380px;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.hero-visual svg {
-  width: 100%;
-  height: 100%;
-}
-
-@media (max-width: 1100px) {
-  .hero-visual { display: none; }
-}
-
-/* ===== SECTIONS ===== */
-section {
-  padding: 120px 0;
-  position: relative;
-}
-
-.section-tag {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--violet);
-  margin-bottom: 20px;
-}
-
-/* ===== OBJETIVO ===== */
-.objetivo {
-  border-top: 1px solid var(--line);
-}
-
-.objetivo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.objetivo-head h2 {
-  font-size: clamp(36px, 5vw, 54px);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -1.5px;
-  margin-bottom: 28px;
-}
-
-.objetivo-head h2 .ital {
-  font-weight: 500;
-  color: var(--violet);
-}
-
-.objetivo-head p {
-  font-size: 17px;
-  color: var(--ink-soft);
-  line-height: 1.7;
-}
-
-.objetivo-points {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.point {
-  padding: 28px 0;
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 24px;
-  align-items: start;
-  transition: padding 0.3s ease;
-}
-
-.point:hover { padding-left: 8px; }
-
-.point:last-child { border-bottom: 1px solid var(--line); }
-
-.point-num {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--violet);
-  line-height: 1;
-  letter-spacing: 0.5px;
-}
-
-.point-title {
-  font-size: 19px;
-  font-weight: 500;
-  letter-spacing: -0.3px;
-  margin-bottom: 8px;
-}
-
-.point-desc {
-  font-size: 15px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-}
-
-/* ===== CONTATO ===== */
-.contato {
-  text-align: center;
-  border-top: 1px solid var(--line);
-  position: relative;
-}
-
-.contato-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 800px;
-  height: 400px;
-  background: radial-gradient(ellipse at center, var(--violet-glow), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.contato-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.contato h2 {
-  font-size: clamp(40px, 5.5vw, 64px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -1.5px;
-  margin-bottom: 24px;
-}
-
-.contato h2 .ital {
-  font-weight: 500;
-  color: var(--violet);
-}
-
-.contato p {
-  font-size: 18px;
-  color: var(--ink-soft);
-  margin-bottom: 44px;
-  line-height: 1.6;
-}
-
-.contato-cta-row {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  border-top: 1px solid var(--line);
-  padding: 48px 0 36px;
-  background: var(--navy-deep);
-  position: relative;
-  z-index: 1;
-}
-
-.footer-grid {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.footer-info {
-  font-size: 13px;
-  color: var(--ink-mute);
-  text-align: right;
-}
-
-.footer-info p:first-child { margin-bottom: 4px; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 860px) {
-  .container { padding: 0 22px; }
-  nav ul { display: none; }
-  .hero { padding: 140px 0 90px; }
-  section { padding: 80px 0; }
-  .objetivo-grid { grid-template-columns: 1fr; gap: 48px; }
-  .point { grid-template-columns: 40px 1fr; gap: 18px; padding: 22px 0; }
-  .point-num { font-size: 26px; }
-  .footer-grid { flex-direction: column; align-items: flex-start; }
-  .footer-info { text-align: left; }
-}
-
-/* ===== ANIMATIONS ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aliam | Agentes de IA para processos repetitivos</title>
+  <meta name="description" content="Veja como a Aliam monta times de agentes de IA para automatizar atendimento, follow-up, CRM, planilhas e rotinas operacionais com supervisao humana.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://aliam.com.br/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Aliam">
+  <meta property="og:title" content="Aliam | Agentes de IA para processos repetitivos">
+  <meta property="og:description" content="Uma vitrine visual de como agentes de IA ajudam empresas a reduzir tarefas repetitivas sem perder controle humano.">
+  <meta property="og:image" content="https://aliam.com.br/assets/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#050a18">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Aliam",
+      "url": "https://aliam.com.br/",
+      "description": "Agentes de IA para automatizar processos repetitivos com supervisao humana.",
+      "areaServed": "BR",
+      "serviceType": [
+        "Automacao de processos",
+        "Agentes de IA",
+        "Integracao de CRM",
+        "Atendimento e follow-up"
+      ],
+      "email": "contato@aliam.com.br",
+      "telephone": "+55 49 8813-2974"
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050a18;
+      --band: #0a1020;
+      --panel: #0f1729;
+      --panel-2: #151d34;
+      --ink: #ffffff;
+      --muted: #8a8fa3;
+      --soft: #c5c8d4;
+      --line: rgba(255,255,255,.08);
+      --line-strong: rgba(155,116,255,.32);
+      --accent: #9b74ff;
+      --accent-2: #b18cff;
+      --accent-deep: #6e45ff;
+      --cyan: #41c8ff;
+      --green: #35d58b;
+      --blue: #5c7cff;
+      --yellow: #f5c451;
+      --rose: #ff6f91;
+      --white: #fff;
+      --shadow: 0 24px 70px rgba(0,0,0,.46);
+      --radius: 8px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #050a18 0%, #0f1729 46%, #050a18 100%);
+      line-height: 1.52;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 16px;
+      z-index: 50;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--bg);
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5,10,24,.78);
+      backdrop-filter: blur(20px);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+      line-height: 1.05;
+    }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 720;
+      letter-spacing: -0.02em;
+    }
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .02em;
+      text-transform: lowercase;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: block;
+      filter: drop-shadow(0 0 14px rgba(155,116,255,.7));
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--soft);
+      font-size: 14px;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--white); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 17px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      font-weight: 760;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 10px 26px rgba(155,116,255,.28);
+    }
+    .btn-primary:hover { background: var(--accent-2); }
+    .btn-secondary {
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,.03);
+      color: var(--white);
+    }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .btn-quiet {
+      border-color: var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--soft);
+    }
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(155,116,255,.48);
+      outline-offset: 3px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      padding: 54px 0 34px;
+      display: grid;
+      align-items: center;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(520px, 1.05fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 16px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 780;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(155,116,255,.14), 0 0 20px rgba(155,116,255,.72);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: .98;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+    .hero-copy {
+      max-width: 660px;
+      margin: 22px 0 0;
+      color: var(--soft);
+      font-size: 18px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 30px 0 0;
+    }
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin: 34px 0 0;
+      max-width: 680px;
+      padding: 0;
+      list-style: none;
+    }
+    .pain-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+      max-width: 680px;
+    }
+    .pain-item {
+      --pain: var(--green);
+      padding: 12px 14px;
+      border-left: 3px solid var(--pain);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--pain) 13%, transparent);
+      color: var(--soft);
+      font-size: 13px;
+    }
+    .pain-item:nth-child(2) { --pain: var(--yellow); }
+    .pain-item:nth-child(3) { --pain: var(--cyan); }
+    .pain-item b {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--white);
+      font-size: 14px;
+    }
+    .proof-item {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.025);
+    }
+    .proof-item strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .proof-item span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .ops-stage {
+      position: relative;
+      min-height: 630px;
+      overflow: hidden;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(155,116,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155,116,255,.08) 1px, transparent 1px),
+        linear-gradient(145deg, rgba(92,124,255,.18), rgba(65,200,255,.08) 36%, rgba(53,213,139,.07) 68%, rgba(255,255,255,.035));
+      background-size: 34px 34px, 34px 34px, auto;
+      box-shadow: var(--shadow);
+    }
+    .stage-top {
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5,10,24,.68);
+    }
+    .window-dots { display: flex; gap: 7px; }
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+    }
+    .window-dots span:nth-child(2) { background: rgba(155,116,255,.56); }
+    .window-dots span:nth-child(3) { background: var(--accent); }
+    .stage-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 740;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .ops-map {
+      position: relative;
+      min-height: 576px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-content: start;
+      padding: 28px 22px 142px;
+    }
+    .flow-line {
+      position: absolute;
+      inset: 96px 70px auto 70px;
+      height: 290px;
+      border: 1px solid rgba(65,200,255,.24);
+      border-radius: 44px;
+      transform: skewY(-4deg);
+    }
+    .flow-line::before,
+    .flow-line::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 24px rgba(65,200,255,.82);
+      animation: travel 5.8s linear infinite;
+    }
+    .flow-line::after {
+      animation-delay: -2.8s;
+      background: var(--green);
+      box-shadow: 0 0 24px rgba(53,213,139,.8);
+    }
+    .agent-node {
+      --node: var(--accent);
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      min-height: 136px;
+      padding: 13px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: rgba(10,16,32,.88);
+      box-shadow: 0 18px 34px rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
+    }
+    .agent-node:nth-of-type(3) { --node: var(--yellow); }
+    .agent-node:nth-of-type(4) { --node: var(--cyan); }
+    .agent-node:nth-of-type(5) { --node: var(--blue); }
+    .agent-node:nth-of-type(6) { --node: var(--rose); }
+    .agent-node:nth-of-type(7) { --node: var(--green); }
+    .agent-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      font-weight: 850;
+      color: var(--white);
+      background: var(--node);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--node) 45%, transparent);
+    }
+    .agent-node:nth-of-type(3) .avatar,
+    .agent-node:nth-of-type(4) .avatar,
+    .agent-node:nth-of-type(7) .avatar { color: #050a18; }
+    .agent-head h3 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.08;
+    }
+    .agent-head span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .agent-node p {
+      margin: 12px 0 0;
+      color: var(--soft);
+      font-size: 13px;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 12px;
+      padding: 6px 8px;
+      border: 1px solid color-mix(in srgb, var(--node) 42%, transparent);
+      border-radius: 999px;
+      color: color-mix(in srgb, var(--node) 82%, var(--white));
+      background: color-mix(in srgb, var(--node) 12%, transparent);
+      font-size: 12px;
+      font-weight: 720;
+    }
+    .stage-console {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(5,10,24,.86);
+    }
+    .console-feed {
+      min-height: 84px;
+      max-height: 84px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 6px;
+      color: var(--soft);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+    }
+    .console-feed div { opacity: .86; }
+    .console-feed b { color: var(--accent-2); font-weight: 700; }
+    .safe-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      border: 1px solid rgba(53,213,139,.28);
+      border-radius: 8px;
+      color: var(--green);
+      background: rgba(53,213,139,.08);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    section { padding: 86px 0; }
+    .section-alt { background: rgba(255,255,255,.025); border-block: 1px solid var(--line); }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .section-head h2 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(30px, 4.2vw, 48px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+    .section-head p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+    }
+    .step {
+      min-height: 214px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+    }
+    .step strong {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--white);
+      color: #08101b;
+      font-size: 13px;
+    }
+    .step h3 { margin: 18px 0 8px; font-size: 18px; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .simulator {
+      display: grid;
+      grid-template-columns: 330px minmax(0,1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .scenario-list {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .scenario-btn {
+      --scenario: var(--accent);
+      width: 100%;
+      min-height: 78px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.035);
+      color: var(--soft);
+      text-align: left;
+      cursor: pointer;
+    }
+    .scenario-btn:nth-child(1) { --scenario: var(--green); }
+    .scenario-btn:nth-child(2) { --scenario: var(--cyan); }
+    .scenario-btn:nth-child(3) { --scenario: var(--yellow); }
+    .scenario-btn:nth-child(4) { --scenario: var(--blue); }
+    .scenario-btn:nth-child(5) { --scenario: var(--rose); }
+    .scenario-btn:nth-child(6) { --scenario: var(--accent); }
+    .scenario-btn strong {
+      display: block;
+      color: var(--white);
+      font-size: 15px;
+    }
+    .scenario-btn span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .scenario-btn[aria-pressed="true"] {
+      border-color: color-mix(in srgb, var(--scenario) 70%, transparent);
+      background: color-mix(in srgb, var(--scenario) 13%, transparent);
+    }
+    .sim-panel {
+      min-height: 470px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .sim-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+    }
+    .sim-head h3 { margin: 0; font-size: 18px; }
+    .sim-head span { color: var(--muted); font-size: 13px; }
+    .workstream {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 16px;
+    }
+    .work-card {
+      min-height: 152px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.028);
+    }
+    .work-card.active {
+      border-color: rgba(65,200,255,.58);
+      background: rgba(65,200,255,.09);
+    }
+    .work-card.target {
+      border-color: rgba(53,213,139,.82);
+      background:
+        linear-gradient(180deg, rgba(53,213,139,.14), rgba(255,255,255,.035));
+      box-shadow: 0 14px 34px rgba(53,213,139,.12);
+    }
+    .work-card.target .mini-avatar {
+      background: var(--green);
+      color: #050a18;
+    }
+    .work-card .mini-avatar {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(65,200,255,.14);
+      color: var(--cyan);
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+    .work-card h4 { margin: 0 0 8px; font-size: 14px; }
+    .work-card p { margin: 0; color: var(--muted); font-size: 12px; }
+    .sim-output {
+      margin: 0 16px 16px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0,0,0,.22);
+    }
+    .sim-output h4 { margin: 0 0 10px; font-size: 15px; }
+    .sim-output ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--soft);
+      font-size: 14px;
+    }
+    .artifact-panel {
+      margin: 0 16px 16px;
+      padding: 16px;
+      border: 1px solid rgba(155,116,255,.34);
+      border-radius: 8px;
+      background: rgba(155,116,255,.07);
+    }
+    .artifact-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .artifact-head h4 {
+      margin: 0;
+      font-size: 15px;
+    }
+    .artifact-head span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .artifact-preview {
+      max-height: 210px;
+      overflow: auto;
+      margin: 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0,0,0,.28);
+      color: var(--soft);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    .agent-card {
+      min-height: 286px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .agent-card[data-agent="atlas"] { --agent: var(--accent); }
+    .agent-card[data-agent="chiquinha"] { --agent: var(--cyan); }
+    .agent-card[data-agent="professor"] { --agent: var(--rose); }
+    .agent-card[data-agent="madruga"] { --agent: var(--blue); }
+    .agent-card[data-agent="barriga"] { --agent: var(--green); }
+    .agent-card[data-agent="kiko"] { --agent: var(--yellow); }
+    .agent-card[data-agent="chaves"] { --agent: var(--accent-2); }
+    .agent-card[data-agent="flue"] { --agent: var(--cyan); }
+    .agent-portrait {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--agent) 55%, transparent);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--agent) 22%, transparent), rgba(255,255,255,.03));
+    }
+    .agent-portrait svg {
+      width: 46px;
+      height: 46px;
+      display: block;
+    }
+    .agent-portrait .head { fill: var(--agent); }
+    .agent-portrait .line {
+      fill: none;
+      stroke: #050a18;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .agent-card[data-agent="madruga"] .agent-portrait .line,
+    .agent-card[data-agent="professor"] .agent-portrait .line,
+    .agent-card[data-agent="chaves"] .agent-portrait .line {
+      stroke: var(--white);
+    }
+    .agent-card h3 { margin: 0 0 6px; font-size: 21px; }
+    .agent-card .role {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--agent);
+      font-size: 13px;
+      font-weight: 780;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .agent-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 16px;
+    }
+    .tag {
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--soft);
+      font-size: 12px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .cases {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    .case-card {
+      min-height: 246px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.035);
+    }
+    .case-card h3 { margin: 0 0 12px; font-size: 20px; }
+    .case-card dl { margin: 0; display: grid; gap: 12px; }
+    .case-card dt {
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 780;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .case-card dd {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .security-panel,
+    .cta-panel {
+      padding: 24px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .routine-form {
+      display: grid;
+      gap: 12px;
+      padding: 20px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+    .field label {
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 720;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0,0,0,.22);
+      color: var(--white);
+      padding: 11px 12px;
+      resize: vertical;
+    }
+    .field textarea { min-height: 116px; }
+    .form-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .form-result {
+      display: none;
+      padding: 12px;
+      border: 1px solid rgba(155,116,255,.34);
+      border-radius: 8px;
+      background: rgba(155,116,255,.09);
+      color: var(--soft);
+      font-size: 13px;
+    }
+    .form-result.is-visible { display: block; }
+    .security-panel h2,
+    .cta-panel h2 {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+    }
+    .check-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .check-list li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      color: var(--soft);
+    }
+    .check-list b { color: var(--accent-2); }
+    .cta-panel {
+      display: grid;
+      align-content: center;
+      background:
+        linear-gradient(135deg, rgba(155,116,255,.18), rgba(255,255,255,.035)),
+        var(--panel);
+    }
+    .cta-panel p {
+      margin: 0 0 24px;
+      max-width: 720px;
+      color: var(--soft);
+      font-size: 17px;
+    }
+
+    .site-footer {
+      padding: 28px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .mobile-cta {
+      display: none;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(.76); opacity: .72; }
+    }
+    @keyframes travel {
+      0% { left: 18px; top: 18px; }
+      24% { left: calc(100% - 28px); top: 18px; }
+      50% { left: calc(100% - 28px); top: calc(100% - 28px); }
+      75% { left: 18px; top: calc(100% - 28px); }
+      100% { left: 18px; top: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    @media (max-width: 1050px) {
+      .hero-grid,
+      .security-grid,
+      .contact-layout { grid-template-columns: 1fr; }
+      .ops-stage { min-height: 580px; }
+      .process-grid,
+      .agent-grid,
+      .cases { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .simulator { grid-template-columns: 1fr; }
+      .scenario-list { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav { min-height: auto; padding: 14px 0; align-items: flex-start; }
+      .nav-links { display: none; }
+      .btn.nav-cta { display: none; }
+      .hero { min-height: auto; padding-top: 42px; }
+      .hero-proof,
+      .pain-strip,
+      .process-grid,
+      .agent-grid,
+      .cases,
+      .scenario-list { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; white-space: normal; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 14px; }
+      section { padding: 62px 0; }
+      .ops-stage { min-height: 760px; }
+      .ops-map {
+        min-height: 706px;
+        grid-template-columns: 1fr;
+        padding: 14px;
+      }
+      .flow-line { display: none; }
+      .agent-node {
+        inset: auto !important;
+        min-height: auto;
+        margin-bottom: 10px;
+      }
+      .stage-console {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        grid-template-columns: 1fr;
+        margin-top: 8px;
+      }
+      .workstream {
+        grid-template-columns: 1fr;
+      }
+      .work-card { min-height: auto; }
+      .artifact-head { display: block; }
+      .artifact-head .btn { width: 100%; margin-top: 10px; }
+      .mobile-cta {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 30;
+        display: flex;
+        box-shadow: 0 14px 34px rgba(0,0,0,.44);
+      }
+      body { padding-bottom: 72px; }
+    }
+  </style>
 </head>
 <body>
-
-<div class="atmosphere">
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-  <div class="grain"></div>
-</div>
-
-<header>
-  <div class="container nav">
-    <a href="#" class="logo">
-      <span class="logo-mark">A</span>
-      <span>aliam</span>
-    </a>
-    <nav>
-      <ul>
-        <li><a href="#objetivo">Objetivo</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
-    <a href="#contato" class="nav-cta">Conversar →</a>
-  </div>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <span class="eyebrow"><span class="eyebrow-pulse"></span> Inteligência aplicada a negócios</span>
-      <h1>Agentes inteligentes que assumem <span class="accent">o operacional</span> da sua empresa.</h1>
-      <p class="hero-sub">A Aliam constrói funcionários digitais sob medida — soluções que conversam, decidem e executam tarefas repetitivas, 24 horas por dia, direto nos canais que sua empresa já usa.</p>
-      <div class="hero-cta-row">
-        <a href="#objetivo" class="btn btn-secondary">Nosso objetivo</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#8B7FFF" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#8B7FFF" stop-opacity="0.1"/>
-        </linearGradient>
-        <radialGradient id="nodeGrad">
-          <stop offset="0%" stop-color="#8B7FFF"/>
-          <stop offset="100%" stop-color="#8B7FFF" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      
-      <!-- Outer ring -->
-      <circle cx="200" cy="200" r="180" fill="none" stroke="url(#lineGrad)" stroke-width="0.5" stroke-dasharray="2,4"/>
-      <circle cx="200" cy="200" r="130" fill="none" stroke="url(#lineGrad)" stroke-width="0.5"/>
-      <circle cx="200" cy="200" r="80" fill="none" stroke="url(#lineGrad)" stroke-width="0.5"/>
-      
-      <!-- Connection lines -->
-      <line x1="200" y1="200" x2="320" y2="120" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
-      <line x1="200" y1="200" x2="80" y2="100" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
-      <line x1="200" y1="200" x2="100" y2="310" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
-      <line x1="200" y1="200" x2="320" y2="290" stroke="#8B7FFF" stroke-width="0.6" opacity="0.4"/>
-      <line x1="200" y1="200" x2="280" y2="60" stroke="#8B7FFF" stroke-width="0.6" opacity="0.3"/>
-      <line x1="200" y1="200" x2="60" y2="220" stroke="#8B7FFF" stroke-width="0.6" opacity="0.3"/>
-      
-      <!-- Center node -->
-      <circle cx="200" cy="200" r="14" fill="#8B7FFF" opacity="0.9"/>
-      <circle cx="200" cy="200" r="22" fill="url(#nodeGrad)" opacity="0.6"/>
-      
-      <!-- Outer nodes -->
-      <circle cx="320" cy="120" r="6" fill="#8B7FFF"/>
-      <circle cx="80" cy="100" r="6" fill="#8B7FFF"/>
-      <circle cx="100" cy="310" r="6" fill="#8B7FFF"/>
-      <circle cx="320" cy="290" r="6" fill="#8B7FFF"/>
-      <circle cx="280" cy="60" r="4" fill="#8B7FFF" opacity="0.7"/>
-      <circle cx="60" cy="220" r="4" fill="#8B7FFF" opacity="0.7"/>
-    </svg>
-  </div>
-</section>
-
-<!-- OBJETIVO -->
-<section class="objetivo" id="objetivo">
-  <div class="container">
-    <div class="objetivo-grid">
-      <div class="objetivo-head reveal">
-        <span class="section-tag">Objetivo</span>
-        <h2>Cada empresa tem rotina <span class="ital">repetitiva</span> sugando tempo de quem deveria estar gerindo.</h2>
-        <p>A Aliam desenvolve agentes inteligentes que assumem essas tarefas — para que sua equipe recupere horas e foque no que só humano faz bem: pensar estratégia, decidir, criar.</p>
-      </div>
-
-      <div class="objetivo-points">
-        <div class="point reveal">
-          <div class="point-num">i.</div>
-          <div>
-            <div class="point-title">Soluções sob medida</div>
-            <div class="point-desc">Cada agente é desenhado para uma dor específica do seu negócio. Não vendemos tecnologia genérica — vendemos a tarefa resolvida.</div>
-          </div>
-        </div>
-
-        <div class="point reveal">
-          <div class="point-num">ii.</div>
-          <div>
-            <div class="point-title">Direto onde sua empresa já está</div>
-            <div class="point-desc">Atende clientes pelo WhatsApp, integra-se aos sistemas existentes, opera nos canais que sua equipe e seus clientes já usam.</div>
-          </div>
-        </div>
-
-        <div class="point reveal">
-          <div class="point-num">iii.</div>
-          <div>
-            <div class="point-title">Operação contínua</div>
-            <div class="point-desc">24 horas por dia, sem pausas, sem feriados. Atendimentos simultâneos sem perda de qualidade nem aumento de custo.</div>
-          </div>
-        </div>
-
-        <div class="point reveal">
-          <div class="point-num">iv.</div>
-          <div>
-            <div class="point-title">Escalável por natureza</div>
-            <div class="point-desc">Cresce junto com sua empresa sem precisar contratar mais gente para tarefas que podem ser automatizadas.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section class="contato" id="contato">
-  <div class="contato-bg"></div>
-  <div class="container">
-    <div class="contato-inner reveal">
-      <span class="section-tag">Contato</span>
-      <h2>Vamos conversar sobre <span class="ital">a sua operação?</span></h2>
-      <p>Conte qual rotina hoje consome o tempo da sua equipe. Em uma conversa de 30 minutos, mostramos como um agente da Aliam pode resolver isso.</p>
-      <div class="contato-cta-row">
-        <a href="https://wa.me/554988132974?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20a%20Aliam." target="_blank" class="btn btn-primary">
-          Conversar pelo WhatsApp
-          <span class="btn-arrow">→</span>
-        </a>
-        <a href="mailto:contato@aliam.com.br" class="btn btn-secondary">Enviar e-mail</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <a href="#" class="logo">
-        <span class="logo-mark">A</span>
-        <span>aliam</span>
+  <a class="skip-link" href="#conteudo">Pular para conteudo</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#topo" aria-label="Aliam">
+        <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="Aliam">
+          <defs>
+            <linearGradient id="brandViolet" x1="18" x2="46" y1="50" y2="14" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#7b4dff"/>
+              <stop offset="1" stop-color="#9b74ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="39" r="23" fill="#9b74ff" opacity=".14"/>
+          <path d="M16 50 29 20c1.2-2.8 4.6-2.8 5.8 0L48 50" fill="none" stroke="url(#brandViolet)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M23 47 32 27 41 47" fill="none" stroke="#b79aff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".58"/>
+        </svg>
+        <span class="brand-copy">
+          <span class="brand-name">Aliam agents</span>
+          <span class="brand-subtitle">inteligência aplicada a negócios</span>
+        </span>
       </a>
-      <div class="footer-info">
-        <p>Inteligência aplicada a negócios.</p>
-        <p>© 2026 Aliam · Todos os direitos reservados</p>
-      </div>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#simulador">Simulador</a>
+        <a href="#time">Time</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="btn btn-primary nav-cta" href="#contato" data-track="cta_header">Agendar diagnóstico</a>
     </div>
-  </div>
-</footer>
+  </header>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, idx) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), idx * 90);
-      observer.unobserve(entry.target);
+  <main id="conteudo">
+    <section class="hero" id="topo">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow"><span class="pulse-dot"></span> Agentes de IA para operações reais</p>
+          <h1>Menos tarefa repetida. Mais tempo para decidir.</h1>
+          <p class="hero-copy">A Aliam cria agentes sob medida para assumir rotinas que consomem tempo, travam a equipe e fazem o dono virar central de tudo. O resultado: mais tempo para vender, atender melhor e enxergar a operação.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#simulador" data-track="cta_hero_simular">Ver como funciona</a>
+            <a class="btn btn-secondary" href="#contato" data-track="cta_hero_contato">Mapear minha rotina</a>
+          </div>
+          <ul class="hero-proof">
+            <li class="proof-item"><strong>1a</strong><span>rotina mapeada antes de automatizar</span></li>
+            <li class="proof-item"><strong>8</strong><span>agentes com função clara no time</span></li>
+            <li class="proof-item"><strong>0</strong><span>dados reais expostos nesta vitrine</span></li>
+          </ul>
+          <div class="pain-strip">
+            <div class="pain-item"><b>Equipe ocupada</b>Relatorio, mensagem e conferencia tomando hora de quem deveria vender.</div>
+            <div class="pain-item"><b>Dono centralizado</b>Processo depende de alguém lembrar, cobrar, conferir e refazer.</div>
+            <div class="pain-item"><b>Automação genérica</b>Ferramenta solta não entende exceção, regra e rotina real da empresa.</div>
+          </div>
+        </div>
+
+        <section class="ops-stage" aria-label="Sala de controle visual dos agentes">
+          <div class="stage-top">
+            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="stage-label">Operação simulada Aliam</span>
+          </div>
+          <div class="ops-map">
+            <div class="flow-line" aria-hidden="true"></div>
+            <article class="agent-node" data-pos="atlas">
+              <div class="agent-head"><span class="avatar">AT</span><div><h3>Atlas</h3><span>orquestração</span></div></div>
+              <p>Entende o objetivo, corta escopo solto e distribui o trabalho.</p>
+              <span class="status-pill">em planejamento</span>
+            </article>
+            <article class="agent-node" data-pos="kiko">
+              <div class="agent-head"><span class="avatar">KI</span><div><h3>Kiko</h3><span>copy e mensagem</span></div></div>
+              <p>Transforma acao operacional em mensagem clara para vender e atender.</p>
+              <span class="status-pill">escrevendo</span>
+            </article>
+            <article class="agent-node" data-pos="chiquinha">
+              <div class="agent-head"><span class="avatar">CH</span><div><h3>Chiquinha</h3><span>tecnologia</span></div></div>
+              <p>Conecta sistemas, valida rastreio e resolve a parte tecnica do fluxo.</p>
+              <span class="status-pill">executando</span>
+            </article>
+            <article class="agent-node" data-pos="madruga">
+              <div class="agent-head"><span class="avatar">SM</span><div><h3>Seu Madruga</h3><span>qualidade visual</span></div></div>
+              <p>Testa a experiencia como cliente, principalmente no celular.</p>
+              <span class="status-pill">validando</span>
+            </article>
+            <article class="agent-node" data-pos="girafales">
+              <div class="agent-head"><span class="avatar">PG</span><div><h3>Professor</h3><span>segurança</span></div></div>
+              <p>Revisa superficie de risco, permissoes, webhook e autenticacao.</p>
+              <span class="status-pill">auditando</span>
+            </article>
+            <article class="agent-node" data-pos="barriga">
+              <div class="agent-head"><span class="avatar">SB</span><div><h3>Seu Barriga</h3><span>recuperação comercial</span></div></div>
+              <p>Pega lead parado, organiza cobrança de retorno e entrega follow-up pronto.</p>
+              <span class="status-pill">recuperando</span>
+            </article>
+            <div class="stage-console">
+              <div class="console-feed" id="liveFeed" aria-live="polite"></div>
+              <span class="safe-badge">Vitrine segura: tudo simulado</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section-alt" id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <h2>Da demanda baguncada ao processo rodando.</h2>
+          <p>A página mostra o que interessa para o empresário: menos tarefa manual, mais previsibilidade e controle humano onde tem risco.</p>
+        </div>
+        <div class="process-grid">
+          <article class="step"><strong>01</strong><h3>Processo mapeado</h3><p>Identificamos onde a equipe perde tempo, erra ou deixa dinheiro parado.</p></article>
+          <article class="step"><strong>02</strong><h3>Agentes definidos</h3><p>Cada agente assume uma parte: triagem, tecnologia, texto, qualidade ou segurança.</p></article>
+          <article class="step"><strong>03</strong><h3>Rotina simulada</h3><p>A vitrine mostra consulta, classificacao, checklist, follow-up e registro.</p></article>
+          <article class="step"><strong>04</strong><h3>Humano no controle</h3><p>O repetitivo roda com agente. Aprovacao, excecao e risco ficam com gente.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulador">
+      <div class="container">
+        <div class="section-head">
+          <h2>Escolha uma dor e veja qual agente assume.</h2>
+          <p>A simulação para no agente com a habilidade certa e gera um TXT no formato do trabalho dele.</p>
+        </div>
+        <div class="simulator">
+          <div class="scenario-list" role="group" aria-label="Cenarios simulados">
+            <button class="scenario-btn" type="button" data-scenario="leads" aria-pressed="true"><strong>Leads sem resposta</strong><span>Triagem, prioridade e follow-up comercial.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="planilhas" aria-pressed="false"><strong>Equipe presa em planilha</strong><span>Conferencia, padronizacao e alerta.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="atendimento" aria-pressed="false"><strong>Atendimento repetitivo</strong><span>Classificacao, resposta base e escalonamento.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="site" aria-pressed="false"><strong>Site e conversao</strong><span>Checklist tecnico, rastreio e melhorias.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="copy" aria-pressed="false"><strong>Mensagem que não converte</strong><span>Copy, CTA e abordagem comercial.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="whatsapp" aria-pressed="false"><strong>WhatsApp bagunçado</strong><span>Fluxo, status e passagem para humano.</span></button>
+          </div>
+          <div class="sim-panel">
+            <div class="sim-head">
+              <div><h3 id="scenarioTitle">Leads sem resposta</h3><span id="scenarioSubtitle">Triagem, prioridade e follow-up comercial.</span></div>
+              <button class="btn btn-secondary" type="button" id="runScenario">Rodar simulação</button>
+            </div>
+            <div class="workstream" id="workstream" aria-live="polite"></div>
+            <div class="sim-output">
+              <h4>Resultado esperado</h4>
+              <ul id="scenarioOutput"></ul>
+            </div>
+            <div class="artifact-panel" id="artifactPanel">
+              <div class="artifact-head">
+                <div>
+                  <h4>Entregável gerado</h4>
+                  <span id="artifactStatus">Clique em “Rodar simulação” para gerar um exemplo.</span>
+                </div>
+                <a class="btn btn-primary" id="downloadArtifact" href="#" download="aliam-simulacao.txt" data-track="download_artifact">Baixar TXT</a>
+              </div>
+              <pre class="artifact-preview" id="artifactPreview">A simulação vai gerar um arquivo no formato do agente responsável por essa dor.</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt" id="time">
+      <div class="container">
+        <div class="section-head">
+          <h2>Um time de agentes, não um chatbot solto.</h2>
+          <p>Cada agente tem papel, limite e contexto. Isso deixa a operação mais clara para vender, implantar e auditar.</p>
+        </div>
+        <div class="agent-grid">
+          <article class="agent-card" data-agent="atlas"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="20" r="14"/><path class="line" d="M17 19h.1M31 19h.1M18 29c3 3 9 3 12 0M24 6v-4M12 11 8 7M36 11l4-4"/></svg></div><h3>Atlas</h3><span class="role">gestão e prioridade</span><p>Organiza objetivo, escopo e ordem de execução. Decide o que entra, o que espera e onde precisa de aprovação.</p><div class="tag-row"><span class="tag">orquestração</span><span class="tag">prioridade</span><span class="tag">aprovação</span></div></article>
+          <article class="agent-card" data-agent="chiquinha"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><rect class="head" x="10" y="8" width="28" height="28" rx="9"/><path class="line" d="M17 20h.1M31 20h.1M18 29h12M13 13l-5-5M35 13l5-5"/></svg></div><h3>Chiquinha</h3><span class="role">tecnologia e automação</span><p>Cuida de site, CRM, scripts, rastreio e integrações. Se o fluxo fede, ela aponta onde e resolve o técnico.</p><div class="tag-row"><span class="tag">site</span><span class="tag">webhook</span><span class="tag">CRM</span></div></article>
+          <article class="agent-card" data-agent="professor"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="23" r="14"/><path class="line" d="M16 20h8M25 20h8M23 20l2 0M19 31h10M15 12h18"/></svg></div><h3>Professor Girafales</h3><span class="role">segurança e risco</span><p>Revisa API, autenticação, permissões, webhooks e qualquer superfície que possa virar problema.</p><div class="tag-row"><span class="tag">segurança</span><span class="tag">API</span><span class="tag">permissão</span></div></article>
+          <article class="agent-card" data-agent="madruga"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="head" d="M10 22c0-9 6-15 14-15s14 6 14 15v12H10V22Z"/><path class="line" d="M17 22h.1M31 22h.1M18 30c3 2 9 2 12 0M14 15h20"/></svg></div><h3>Seu Madruga</h3><span class="role">UI, teste e polimento</span><p>Valida visual, fluxo real, mobile, performance percebida e pontos que atrapalham conversão.</p><div class="tag-row"><span class="tag">UX</span><span class="tag">mobile</span><span class="tag">checkout</span></div></article>
+          <article class="agent-card" data-agent="barriga"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="22" r="14"/><path class="line" d="M17 21h.1M31 21h.1M18 30h12M15 12h18M16 38h16"/></svg></div><h3>Seu Barriga</h3><span class="role">cobrança e recuperação</span><p>Assume lead sem resposta, cobrança de retorno, proposta parada e rotina comercial que precisa de cadência.</p><div class="tag-row"><span class="tag">lead</span><span class="tag">follow-up</span><span class="tag">CRM</span></div></article>
+          <article class="agent-card" data-agent="kiko"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="23" r="15"/><path class="line" d="M17 21h.1M31 21h.1M18 31c4-2 8-2 12 0M14 10c4-5 16-5 20 0"/></svg></div><h3>Kiko</h3><span class="role">copy e comunicação</span><p>Transforma processo em mensagem que cliente entende, vendedor usa e suporte reaproveita.</p><div class="tag-row"><span class="tag">copy</span><span class="tag">CTA</span><span class="tag">email</span></div></article>
+          <article class="agent-card" data-agent="chaves"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="24" r="14"/><path class="line" d="M16 21h.1M32 21h.1M18 31c4 3 8 3 12 0M12 16c5-7 19-7 24 0"/></svg></div><h3>Chaves</h3><span class="role">atendimento e triagem</span><p>Responde perguntas repetidas, coleta contexto, separa urgência e chama humano quando vira exceção.</p><div class="tag-row"><span class="tag">suporte</span><span class="tag">triagem</span><span class="tag">FAQ</span></div></article>
+          <article class="agent-card" data-agent="flue"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><rect class="head" x="11" y="11" width="26" height="26" rx="13"/><path class="line" d="M15 24h18M24 15v18M17 17c6 4 8 10 14 14"/></svg></div><h3>Flue</h3><span class="role">fluxo e canais</span><p>Organiza WhatsApp, passagem de status, captura de lead e continuidade entre conversa, CRM e equipe.</p><div class="tag-row"><span class="tag">WhatsApp</span><span class="tag">funil</span><span class="tag">status</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Onde a empresa sente ganho primeiro.</h2>
+          <p>A página não tenta explicar IA. Ela mostra dor operacional, fluxo de agente e resultado possível.</p>
+        </div>
+        <div class="cases">
+          <article class="case-card"><h3>Comercial</h3><dl><div><dt>Antes</dt><dd>Lead chega, ninguem prioriza, follow-up depende de lembranca.</dd></div><div><dt>Depois</dt><dd>Agente classifica, resume, sugere resposta e agenda proximo contato.</dd></div></dl></article>
+          <article class="case-card"><h3>Operacao</h3><dl><div><dt>Antes</dt><dd>Equipe perde hora com planilha, copia e cola, conferencia e retrabalho.</dd></div><div><dt>Depois</dt><dd>Agentes padronizam dados, apontam excecoes e geram resumo acionavel.</dd></div></dl></article>
+          <article class="case-card"><h3>Atendimento</h3><dl><div><dt>Antes</dt><dd>Perguntas iguais tomam tempo e casos importantes chegam sem contexto.</dd></div><div><dt>Depois</dt><dd>Agente resolve o comum, coleta dados e escala o que precisa de humano.</dd></div></dl></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt" id="contato">
+      <div class="container contact-layout">
+        <div class="cta-panel">
+          <h2>Vamos mapear o primeiro processo que pode virar agente?</h2>
+          <p>Em um diagnóstico curto, a Aliam identifica uma rotina repetitiva, estima o ganho, aponta riscos e desenha o primeiro fluxo possível.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/554988132974?text=Ola%2C%20quero%20mapear%20um%20processo%20repetitivo%20com%20agentes%20da%20Aliam.&utm_source=site&utm_medium=cta&utm_campaign=vitrine_agentes_v5" target="_blank" rel="noopener noreferrer" data-track="cta_whatsapp">Agendar pelo WhatsApp</a>
+            <button class="btn btn-secondary" type="button" id="focusRoutineForm" data-track="cta_open_form">Descrever minha rotina</button>
+          </div>
+        </div>
+        <form class="routine-form" id="routineForm">
+          <div class="field">
+            <label for="routineName">Seu nome</label>
+            <input id="routineName" name="name" type="text" autocomplete="name" placeholder="Nome e empresa">
+          </div>
+          <div class="field">
+            <label for="routineType">Onde a rotina trava mais?</label>
+            <select id="routineType" name="type">
+              <option>Comercial e follow-up</option>
+              <option>Planilhas e operação</option>
+              <option>Atendimento repetitivo</option>
+              <option>Site, CRM ou integrações</option>
+              <option>Outro processo interno</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="routineText">Descreva a rotina</label>
+            <textarea id="routineText" name="routine" placeholder="Ex: todo dia alguém copia dados da planilha, confere pagamento, manda mensagem no WhatsApp e atualiza o CRM..."></textarea>
+          </div>
+          <p class="form-note">Este protótipo não envia dados para servidor. Ele monta uma mensagem para WhatsApp no seu navegador.</p>
+          <button class="btn btn-primary" type="submit" data-track="routine_form_submit">Gerar mensagem para WhatsApp</button>
+          <div class="form-result" id="routineResult"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>Aliam Agentes. Protótipo 5 de vitrine comercial.</span>
+      <span>Vitrine simulada, sem dados reais.</span>
+    </div>
+  </footer>
+  <a class="btn btn-primary mobile-cta" href="#contato" data-track="cta_mobile_fixed">Mapear minha rotina</a>
+
+  <script>
+    const liveFeed = document.querySelector("#liveFeed");
+    const feedItems = [
+      ["Atlas", "priorizou uma rotina simulada"],
+      ["Chiquinha", "validou CRM fictício"],
+      ["Seu Barriga", "recuperou um lead parado"],
+      ["Kiko", "ajustou uma mensagem comercial"],
+      ["Chaves", "triou atendimento repetitivo"],
+      ["Flue", "organizou status do WhatsApp"],
+      ["Seu Madruga", "validando CTA no mobile"],
+      ["Professor", "confirmou vitrine sem dado real"],
+      ["Humano", "mantém a aprovação do próximo passo"]
+    ];
+    let feedIndex = 0;
+
+    function pushFeed() {
+      const [agent, action] = feedItems[feedIndex % feedItems.length];
+      const line = document.createElement("div");
+      line.innerHTML = `<b>${agent}</b> ${action}`;
+      liveFeed.appendChild(line);
+      while (liveFeed.children.length > 4) liveFeed.removeChild(liveFeed.firstChild);
+      feedIndex += 1;
     }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    feedItems.slice(0, 4).forEach(() => pushFeed());
+    window.setInterval(pushFeed, 2100);
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    const scenarios = {
+      leads: {
+        title: "Leads sem resposta",
+        subtitle: "Recuperacao comercial com cadencia e proximo contato claro.",
+        agent: "Seu Barriga",
+        output: ["Simulacao para no Seu Barriga.", "Lead parado ganha status, prioridade e cadencia.", "TXT sai em formato de follow-up comercial.", "Humano aprova a abordagem antes de enviar."],
+        artifactTitle: "seu-barriga-follow-up-leads.txt",
+        artifact: [
+          "SEU BARRIGA - RECUPERACAO DE LEAD SEM RESPOSTA",
+          "",
+          "Lead analisado:",
+          "- Lead veio do WhatsApp ou formulario.",
+          "- Interesse declarado: entender automacao com agentes.",
+          "- Status inicial: sem resposta registrada.",
+          "",
+          "Classificacao:",
+          "- Prioridade: alta",
+          "- Motivo: pediu contato e ficou sem retorno",
+          "- Risco: perder oportunidade quente por falta de cadencia",
+          "",
+          "Plano de cobranca de retorno:",
+          "1. Enviar resposta curta ainda hoje.",
+          "2. Se nao responder, fazer novo toque em 24 horas.",
+          "3. Se abrir conversa, levar para diagnostico de rotina.",
+          "",
+          "Mensagem sugerida pelo Seu Barriga:",
+          "Ola, vi que voce pediu contato sobre agentes da Aliam e ainda nao fechamos esse retorno. Posso mapear uma rotina simples da sua operacao para ver se faz sentido automatizar?",
+          "",
+          "Registro para CRM:",
+          "- Status: follow-up pendente",
+          "- Responsavel: comercial",
+          "- Proximo passo: responder em ate 2 horas uteis",
+          "",
+          "Observacao:",
+          "Exemplo ficticio. Nenhum dado real foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Identifica que a dor e comercial."],
+          ["FL", "Flue", "Confere canal e status do funil."],
+          ["SB", "Seu Barriga", "Assume recuperacao do lead."]
+        ],
+        targetIndex: 2
+      },
+      planilhas: {
+        title: "Equipe presa em planilha",
+        subtitle: "Conferencia, padronizacao e alerta antes do erro virar custo.",
+        agent: "Chiquinha",
+        output: ["Simulacao para na Chiquinha.", "Campos inconsistentes sao destacados.", "Dados repetidos viram alerta.", "TXT sai em formato tecnico-operacional."],
+        artifactTitle: "chiquinha-diagnostico-planilha.txt",
+        artifact: [
+          "CHIQUINHA - DIAGNOSTICO DE PLANILHA OPERACIONAL",
+          "",
+          "Entrada analisada:",
+          "cliente;status;valor;acao",
+          "Empresa A;sem retorno;1200;enviar follow-up",
+          "Empresa B;pago;850;registrar CRM",
+          "Empresa C;duplicado;850;revisar humano",
+          "Empresa D;pendente;;pedir valor",
+          "",
+          "Saida organizada pelo agente:",
+          "1. Empresa A -> follow-up comercial sugerido",
+          "2. Empresa B -> registro pronto para CRM",
+          "3. Empresa C -> alerta de possivel duplicidade",
+          "4. Empresa D -> dado faltante: valor",
+          "",
+          "Diagnostico tecnico:",
+          "- A planilha mistura status comercial, financeiro e tarefa operacional.",
+          "- Tem dado faltante em valor.",
+          "- Tem possivel duplicidade de valor.",
+          "- Da para automatizar leitura, validacao e resumo, mas decisao sensivel fica com humano.",
+          "",
+          "Proximo passo da Chiquinha:",
+          "1. Definir campos obrigatorios.",
+          "2. Separar regra automatica de excecao humana.",
+          "3. Criar rotina de alerta para duplicidade e dado faltante.",
+          "",
+          "Observacao:",
+          "Exemplo ficticio. Nenhum dado real foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Define que a dor e operacao."],
+          ["PG", "Professor", "Sinaliza cuidado com permissao."],
+          ["CH", "Chiquinha", "Assume diagnostico tecnico da planilha."]
+        ],
+        targetIndex: 2
+      },
+      atendimento: {
+        title: "Atendimento repetitivo",
+        subtitle: "Resposta comum, coleta de dados e escala para humano.",
+        agent: "Chaves",
+        output: ["Simulacao para no Chaves.", "Perguntas comuns recebem resposta base.", "Casos urgentes sao separados.", "TXT sai como roteiro de atendimento."],
+        artifactTitle: "chaves-roteiro-atendimento.txt",
+        artifact: [
+          "CHAVES - ROTEIRO DE ATENDIMENTO REPETITIVO",
+          "",
+          "Pergunta frequente detectada:",
+          "\"Quero saber como funciona e quanto custa.\"",
+          "",
+          "Resposta base sugerida:",
+          "A Aliam comeca mapeando uma rotina repetitiva da sua empresa. Depois desenha um fluxo com agentes, limites de seguranca e pontos de aprovacao humana.",
+          "",
+          "Dados que o agente deve coletar:",
+          "- Qual processo mais consome tempo?",
+          "- Quantas pessoas executam essa rotina?",
+          "- Existe CRM, planilha ou WhatsApp no fluxo?",
+          "- Que decisao precisa continuar com humano?",
+          "",
+          "Quando o Chaves responde:",
+          "- pergunta recorrente",
+          "- coleta de contexto",
+          "- orientacao inicial sem promessa comercial",
+          "",
+          "Quando escalar para humano:",
+          "- houver preco, contrato, dado sensivel ou decisao critica.",
+          "",
+          "Observacao:",
+          "Exemplo ficticio. Nenhum dado real foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Classifica que a dor e atendimento."],
+          ["KI", "Kiko", "Ajusta tom da resposta base."],
+          ["CV", "Chaves", "Assume triagem e resposta repetitiva."]
+        ],
+        targetIndex: 2
+      },
+      site: {
+        title: "Site e conversao",
+        subtitle: "Checklist tecnico, rastreio e melhoria de CTA.",
+        agent: "Seu Madruga",
+        output: ["Simulacao para no Seu Madruga.", "Layout, mobile e CTA entram no checklist.", "Rastreio fica como item tecnico.", "TXT sai em formato de QA visual."],
+        artifactTitle: "seu-madruga-checklist-site.txt",
+        artifact: [
+          "SEU MADRUGA - CHECKLIST DE SITE E CONVERSAO",
+          "",
+          "Visual e experiencia:",
+          "[ok] Headline comunica dor operacional",
+          "[ok] CTA principal leva para diagnostico",
+          "[ok] Botoes cabem no mobile",
+          "[ok] Cores seguem base do site Aliam",
+          "",
+          "Rastreio e tecnica para Chiquinha:",
+          "[ok] WhatsApp tem UTM de campanha",
+          "[ok] Evento dataLayer preparado",
+          "[alerta] Confirmar numero oficial antes de publicar",
+          "[alerta] Validar politica de privacidade se entrar pixel",
+          "",
+          "Proximo passo sugerido:",
+          "Publicar em preview antes de trocar a home principal. Medir clique em CTA depois da publicacao.",
+          "",
+          "Observacao:",
+          "Exemplo ficticio. Nenhum dado real foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Fecha escopo da melhoria."],
+          ["CH", "Chiquinha", "Confere SEO, HTML e evento."],
+          ["SM", "Seu Madruga", "Assume QA visual e responsivo."]
+        ],
+        targetIndex: 2
+      },
+      copy: {
+        title: "Mensagem que não converte",
+        subtitle: "Copy, CTA e abordagem comercial sem promessa torta.",
+        agent: "Kiko",
+        output: ["Simulacao para no Kiko.", "Mensagem fica mais clara e vendavel.", "Promessa exagerada sai do texto.", "TXT sai como bloco de copy pronto para revisar."],
+        artifactTitle: "kiko-copy-comercial.txt",
+        artifact: [
+          "KIKO - BLOCO DE COPY COMERCIAL",
+          "",
+          "Problema detectado:",
+          "- A mensagem fala de tecnologia antes de falar da dor do cliente.",
+          "- CTA fica abstrato e nao diz qual e o proximo passo.",
+          "",
+          "Headline sugerida:",
+          "Menos tarefa repetida. Mais tempo para vender, atender e decidir.",
+          "",
+          "Subtexto:",
+          "A Aliam mapeia uma rotina da sua empresa e desenha um primeiro fluxo com agentes, integracoes e supervisao humana.",
+          "",
+          "CTA principal:",
+          "Mapear minha rotina",
+          "",
+          "Cuidado de promessa:",
+          "- Nao prometer prazo fechado sem escopo.",
+          "- Nao prometer automacao total.",
+          "- Falar de primeiro fluxo viavel.",
+          "",
+          "Observacao:",
+          "Exemplo ficticio. Nenhum dado real foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Define objetivo comercial."],
+          ["SB", "Seu Barriga", "Aponta a dor de lead parado."],
+          ["KI", "Kiko", "Assume copy e CTA."]
+        ],
+        targetIndex: 2
+      },
+      whatsapp: {
+        title: "WhatsApp bagunçado",
+        subtitle: "Fluxo, status e passagem para humano sem perder conversa.",
+        agent: "Flue",
+        output: ["Simulacao para no Flue.", "Conversa ganha status e etapa.", "Passagem para humano fica prevista.", "TXT sai como desenho de fluxo."],
+        artifactTitle: "flue-fluxo-whatsapp.txt",
+        artifact: [
+          "FLUE - FLUXO DE WHATSAPP E FUNIL",
+          "",
+          "Entrada:",
+          "- Cliente chama no WhatsApp.",
+          "- Nao existe status claro.",
+          "- Conversa depende de alguem lembrar de responder.",
+          "",
+          "Fluxo sugerido:",
+          "1. Capturar nome, empresa e dor principal.",
+          "2. Classificar: comercial, suporte, financeiro ou tecnico.",
+          "3. Criar status: novo, em triagem, aguardando humano, concluido.",
+          "4. Se for oportunidade, enviar para CRM com resumo.",
+          "5. Se tiver risco, escalar antes de qualquer acao externa.",
+          "",
+          "Mensagem de passagem para humano:",
+          "Entendi o contexto. Vou passar isso para uma pessoa da Aliam com o resumo da conversa para ela continuar sem voce repetir tudo.",
+          "",
+          "Observacao:",
+          "Exemplo ficticio. Nenhum dado real foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Define que a dor e fluxo de canal."],
+          ["CV", "Chaves", "Coleta o contexto da conversa."],
+          ["FL", "Flue", "Assume status, funil e passagem."]
+        ],
+        targetIndex: 2
+      }
+    };
 
-const header = document.querySelector('header');
-window.addEventListener('scroll', () => {
-  header.style.padding = window.pageYOffset > 80 ? '14px 0' : '22px 0';
-});
-</script>
+    const buttons = document.querySelectorAll(".scenario-btn");
+    const title = document.querySelector("#scenarioTitle");
+    const subtitle = document.querySelector("#scenarioSubtitle");
+    const workstream = document.querySelector("#workstream");
+    const output = document.querySelector("#scenarioOutput");
+    const runButton = document.querySelector("#runScenario");
+    const artifactPreview = document.querySelector("#artifactPreview");
+    const artifactStatus = document.querySelector("#artifactStatus");
+    const downloadArtifact = document.querySelector("#downloadArtifact");
+    const routineForm = document.querySelector("#routineForm");
+    const routineResult = document.querySelector("#routineResult");
+    const focusRoutineForm = document.querySelector("#focusRoutineForm");
+    let activeScenario = "leads";
+    let stepTimer;
+    let artifactUrl;
 
+    function renderScenario(key) {
+      activeScenario = key;
+      const scenario = scenarios[key];
+      title.textContent = scenario.title;
+      subtitle.textContent = scenario.subtitle;
+      workstream.innerHTML = "";
+      output.innerHTML = "";
+      scenario.steps.forEach((step, index) => {
+        const card = document.createElement("article");
+        card.className = `work-card${index === 0 ? " active" : ""}${index === scenario.targetIndex ? " target" : ""}`;
+        card.innerHTML = `<div class="mini-avatar">${step[0]}</div><h4>${step[1]}</h4><p>${step[2]}</p>`;
+        workstream.appendChild(card);
+      });
+      scenario.output.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        output.appendChild(li);
+      });
+      artifactStatus.textContent = `Clique em “Rodar simulação” para acionar ${scenario.agent}.`;
+      artifactPreview.textContent = "A simulação vai gerar um arquivo no formato do agente responsável por essa dor.";
+      downloadArtifact.setAttribute("href", "#");
+      downloadArtifact.setAttribute("download", "aliam-simulacao.txt");
+    }
+
+    function generateArtifact() {
+      const scenario = scenarios[activeScenario];
+      if (artifactUrl) URL.revokeObjectURL(artifactUrl);
+      artifactPreview.textContent = scenario.artifact;
+      artifactStatus.textContent = `Arquivo pronto: ${scenario.artifactTitle}`;
+      const blob = new Blob([scenario.artifact], { type: "text/plain;charset=utf-8" });
+      artifactUrl = URL.createObjectURL(blob);
+      downloadArtifact.href = artifactUrl;
+      downloadArtifact.download = scenario.artifactTitle;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "aliam_agent_artifact_generated", scenario: activeScenario });
+    }
+
+    function animateScenario() {
+      const cards = [...document.querySelectorAll(".work-card")];
+      const scenario = scenarios[activeScenario];
+      let index = 0;
+      window.clearInterval(stepTimer);
+      cards.forEach(card => card.classList.remove("active"));
+      cards[0].classList.add("active");
+      stepTimer = window.setInterval(() => {
+        cards.forEach(card => card.classList.remove("active"));
+        index += 1;
+        cards[index].classList.add("active");
+        if (index === scenario.targetIndex) {
+          window.clearInterval(stepTimer);
+          generateArtifact();
+        }
+      }, 680);
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(item => item.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        renderScenario(button.dataset.scenario);
+        animateScenario();
+      });
+    });
+    runButton.addEventListener("click", animateScenario);
+    renderScenario(activeScenario);
+
+    focusRoutineForm.addEventListener("click", () => {
+      document.querySelector("#routineText").focus();
+    });
+
+    routineForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const name = document.querySelector("#routineName").value.trim() || "Visitante";
+      const type = document.querySelector("#routineType").value;
+      const routine = document.querySelector("#routineText").value.trim();
+      const message = [
+        "Ola, quero mapear uma rotina com agentes da Aliam.",
+        "",
+        `Nome/empresa: ${name}`,
+        `Tipo de rotina: ${type}`,
+        `Descricao: ${routine || "Ainda vou detalhar no atendimento."}`
+      ].join("\\n");
+      const url = `https://wa.me/554988132974?text=${encodeURIComponent(message)}&utm_source=site&utm_medium=form&utm_campaign=vitrine_agentes_v5`;
+      routineResult.classList.add("is-visible");
+      routineResult.textContent = "Mensagem pronta. ";
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Abrir conversa no WhatsApp";
+      routineResult.appendChild(link);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "aliam_routine_form_ready", type });
+    });
+
+    document.querySelectorAll("[data-track]").forEach(item => {
+      item.addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "aliam_agent_vitrine_click", id: item.dataset.track });
+      });
+    });
+  </script>
 </body>
 </html>

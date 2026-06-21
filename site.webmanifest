@@ -1,0 +1,15 @@
+{
+  "name": "Aliam Agentes",
+  "short_name": "Aliam",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b12",
+  "theme_color": "#0a0f1a",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}

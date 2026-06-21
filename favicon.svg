@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Aliam">
+  <defs>
+    <linearGradient id="mark" x1="18" x2="46" y1="50" y2="14" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7b4dff"/>
+      <stop offset="1" stop-color="#9b74ff"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#050a18"/>
+  <circle cx="32" cy="36" r="22" fill="#9b74ff" opacity=".14"/>
+  <path d="M16 50 29 20c1.2-2.8 4.6-2.8 5.8 0L48 50" fill="none" stroke="url(#mark)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M23 47 32 27 41 47" fill="none" stroke="#b79aff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".58"/>
+</svg>
