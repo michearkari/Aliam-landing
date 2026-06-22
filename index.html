@@ -544,6 +544,7 @@
     .scenario-btn:nth-child(4) { --scenario: var(--blue); }
     .scenario-btn:nth-child(5) { --scenario: var(--rose); }
     .scenario-btn:nth-child(6) { --scenario: var(--accent); }
+    .scenario-btn:nth-child(7) { --scenario: var(--cyan); }
     .scenario-btn strong {
       display: block;
       color: var(--white);
@@ -686,6 +687,7 @@
     .agent-card[data-agent="barriga"] { --agent: var(--green); }
     .agent-card[data-agent="kiko"] { --agent: var(--yellow); }
     .agent-card[data-agent="chaves"] { --agent: var(--accent-2); }
+    .agent-card[data-agent="florinda"] { --agent: var(--rose); }
     .agent-card[data-agent="flue"] { --agent: var(--cyan); }
     .agent-portrait {
       width: 64px;
@@ -1013,7 +1015,7 @@
           <ul class="hero-proof">
             <li class="proof-item"><strong>1a</strong><span>rotina mapeada antes de automatizar</span></li>
             <li class="proof-item"><strong>8</strong><span>agentes com função clara no time</span></li>
-            <li class="proof-item"><strong>0</strong><span>dados reais expostos nesta vitrine</span></li>
+            <li class="proof-item"><strong>Aliam</strong><span>dados reais, sem clientes expostos</span></li>
           </ul>
           <div class="pain-strip">
             <div class="pain-item"><b>Equipe ocupada</b>Relatorio, mensagem e conferencia tomando hora de quem deveria vender.</div>
@@ -1097,6 +1099,7 @@
             <button class="scenario-btn" type="button" data-scenario="site" aria-pressed="false"><strong>Site e conversao</strong><span>Checklist tecnico, rastreio e melhorias.</span></button>
             <button class="scenario-btn" type="button" data-scenario="copy" aria-pressed="false"><strong>Mensagem que não converte</strong><span>Copy, CTA e abordagem comercial.</span></button>
             <button class="scenario-btn" type="button" data-scenario="whatsapp" aria-pressed="false"><strong>WhatsApp bagunçado</strong><span>Fluxo, status e passagem para humano.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="idioma" aria-pressed="false"><strong>Aprender um novo idioma</strong><span>Inglês com rotina, prática e acompanhamento.</span></button>
           </div>
           <div class="sim-panel">
             <div class="sim-head">
@@ -1137,7 +1140,8 @@
           <article class="agent-card" data-agent="barriga"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="22" r="14"/><path class="line" d="M17 21h.1M31 21h.1M18 30h12M15 12h18M16 38h16"/></svg></div><h3>Seu Barriga</h3><span class="role">cobrança e recuperação</span><p>Assume lead sem resposta, cobrança de retorno, proposta parada e rotina comercial que precisa de cadência.</p><div class="tag-row"><span class="tag">lead</span><span class="tag">follow-up</span><span class="tag">CRM</span></div></article>
           <article class="agent-card" data-agent="kiko"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="23" r="15"/><path class="line" d="M17 21h.1M31 21h.1M18 31c4-2 8-2 12 0M14 10c4-5 16-5 20 0"/></svg></div><h3>Kiko</h3><span class="role">copy e comunicação</span><p>Transforma processo em mensagem que cliente entende, vendedor usa e suporte reaproveita.</p><div class="tag-row"><span class="tag">copy</span><span class="tag">CTA</span><span class="tag">email</span></div></article>
           <article class="agent-card" data-agent="chaves"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="24" r="14"/><path class="line" d="M16 21h.1M32 21h.1M18 31c4 3 8 3 12 0M12 16c5-7 19-7 24 0"/></svg></div><h3>Chaves</h3><span class="role">atendimento e triagem</span><p>Responde perguntas repetidas, coleta contexto, separa urgência e chama humano quando vira exceção.</p><div class="tag-row"><span class="tag">suporte</span><span class="tag">triagem</span><span class="tag">FAQ</span></div></article>
-          <article class="agent-card" data-agent="flue"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><rect class="head" x="11" y="11" width="26" height="26" rx="13"/><path class="line" d="M15 24h18M24 15v18M17 17c6 4 8 10 14 14"/></svg></div><h3>Flue</h3><span class="role">fluxo e canais</span><p>Organiza WhatsApp, passagem de status, captura de lead e continuidade entre conversa, CRM e equipe.</p><div class="tag-row"><span class="tag">WhatsApp</span><span class="tag">funil</span><span class="tag">status</span></div></article>
+          <article class="agent-card" data-agent="florinda"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><circle class="head" cx="24" cy="23" r="14"/><path class="line" d="M17 21h.1M31 21h.1M17 30h14M13 14c5-6 17-6 22 0M15 37h18"/></svg></div><h3>Dona Florinda</h3><span class="role">WhatsApp e organização</span><p>Arruma conversa solta, status, passagem para humano e continuidade sem deixar atendimento perdido.</p><div class="tag-row"><span class="tag">WhatsApp</span><span class="tag">status</span><span class="tag">humano</span></div></article>
+          <article class="agent-card" data-agent="flue"><div class="agent-portrait" aria-hidden="true"><svg viewBox="0 0 48 48"><rect class="head" x="11" y="11" width="26" height="26" rx="13"/><path class="line" d="M15 24h18M24 15v18M17 17c6 4 8 10 14 14"/></svg></div><h3>Flue</h3><span class="role">idiomas e inglês</span><p>Ajuda a criar rotina de estudo, prática de conversação, revisão de vocabulário e acompanhamento de evolução.</p><div class="tag-row"><span class="tag">inglês</span><span class="tag">prática</span><span class="tag">fluência</span></div></article>
         </div>
       </div>
     </section>
@@ -1195,8 +1199,8 @@
 
   <footer class="site-footer">
     <div class="container footer-row">
-      <span>Aliam Agentes. Protótipo 5 de vitrine comercial.</span>
-      <span>Vitrine simulada, sem dados reais.</span>
+      <span>Aliam Agents.</span>
+      <span>2026 todos os direitos reservados.</span>
     </div>
   </footer>
   <a class="btn btn-primary mobile-cta" href="#contato" data-track="cta_mobile_fixed">Mapear minha rotina</a>
@@ -1209,9 +1213,10 @@
       ["Seu Barriga", "recuperou um lead parado"],
       ["Kiko", "ajustou uma mensagem comercial"],
       ["Chaves", "triou atendimento repetitivo"],
-      ["Flue", "organizou status do WhatsApp"],
+      ["Dona Florinda", "organizou um atendimento no WhatsApp"],
+      ["Flue", "preparou uma rotina de inglês"],
       ["Seu Madruga", "validando CTA no mobile"],
-      ["Professor", "confirmou vitrine sem dado real"],
+      ["Professor", "validou dados reais sem expor clientes"],
       ["Humano", "mantém a aprovação do próximo passo"]
     ];
     let feedIndex = 0;
@@ -1265,7 +1270,7 @@
         ].join("\\n"),
         steps: [
           ["AT", "Atlas", "Identifica que a dor e comercial."],
-          ["FL", "Flue", "Confere canal e status do funil."],
+          ["CV", "Chaves", "Confere origem e contexto do contato."],
           ["SB", "Seu Barriga", "Assume recuperacao do lead."]
         ],
         targetIndex: 2
@@ -1426,11 +1431,11 @@
       whatsapp: {
         title: "WhatsApp bagunçado",
         subtitle: "Fluxo, status e passagem para humano sem perder conversa.",
-        agent: "Flue",
-        output: ["Simulacao para no Flue.", "Conversa ganha status e etapa.", "Passagem para humano fica prevista.", "TXT sai como desenho de fluxo."],
-        artifactTitle: "flue-fluxo-whatsapp.txt",
+        agent: "Dona Florinda",
+        output: ["Simulacao para na Dona Florinda.", "Conversa ganha status e etapa.", "Passagem para humano fica prevista.", "TXT sai como desenho de atendimento."],
+        artifactTitle: "dona-florinda-whatsapp-atendimento.txt",
         artifact: [
-          "FLUE - FLUXO DE WHATSAPP E FUNIL",
+          "DONA FLORINDA - ORGANIZACAO DE WHATSAPP",
           "",
           "Entrada:",
           "- Cliente chama no WhatsApp.",
@@ -1453,7 +1458,43 @@
         steps: [
           ["AT", "Atlas", "Define que a dor e fluxo de canal."],
           ["CV", "Chaves", "Coleta o contexto da conversa."],
-          ["FL", "Flue", "Assume status, funil e passagem."]
+          ["DF", "Dona Florinda", "Assume status, ordem e passagem."]
+        ],
+        targetIndex: 2
+      },
+      idioma: {
+        title: "Aprender um novo idioma",
+        subtitle: "Ingles com rotina, pratica e acompanhamento de evolucao.",
+        agent: "Flue",
+        output: ["Simulacao para no Flue.", "Objetivo de idioma vira rotina semanal.", "Pratica e revisao entram no plano.", "TXT sai como trilha de estudo."],
+        artifactTitle: "flue-plano-ingles.txt",
+        artifact: [
+          "FLUE - PLANO DE INGLES APLICADO",
+          "",
+          "Objetivo:",
+          "- Melhorar ingles para trabalho, viagem ou atendimento.",
+          "- Criar rotina simples de pratica sem depender de aula longa.",
+          "- Acompanhar vocabulario, conversacao e revisao.",
+          "",
+          "Plano sugerido:",
+          "1. Definir nivel atual e objetivo dos proximos 30 dias.",
+          "2. Separar vocabulario por contexto real: vendas, reuniao, viagem ou suporte.",
+          "3. Praticar frases curtas com correcao e repeticao.",
+          "4. Registrar erros recorrentes e revisar toda semana.",
+          "5. Ajustar dificuldade conforme evolucao.",
+          "",
+          "Exemplo de rotina:",
+          "- 10 minutos de vocabulario aplicado.",
+          "- 10 minutos de escuta ou leitura curta.",
+          "- 10 minutos de resposta falada ou escrita.",
+          "",
+          "Observacao:",
+          "Exemplo de estudo. Nenhum dado pessoal foi usado."
+        ].join("\\n"),
+        steps: [
+          ["AT", "Atlas", "Define objetivo de aprendizado."],
+          ["KI", "Kiko", "Ajusta tom e exemplos de pratica."],
+          ["FL", "Flue", "Monta rotina de ingles e acompanhamento."]
         ],
         targetIndex: 2
       }
