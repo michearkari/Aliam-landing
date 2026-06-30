@@ -654,18 +654,113 @@
       color: var(--muted);
       font-size: 12px;
     }
-    .artifact-preview {
-      max-height: 210px;
-      overflow: auto;
-      margin: 0;
-      padding: 12px;
+    .sim-context {
+      display: grid;
+      gap: 7px;
+      padding: 14px 16px 0;
+    }
+    .sim-context label {
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 720;
+    }
+    .sim-context textarea {
+      width: 100%;
+      min-height: 64px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: rgba(0,0,0,.28);
-      color: var(--soft);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: rgba(0,0,0,.22);
+      color: var(--white);
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 14px;
+      resize: vertical;
+    }
+    .sim-context textarea:focus-visible {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .artifact-actions { display: flex; gap: 8px; }
+    .deliverable {
+      max-height: 340px;
+      overflow: auto;
+      display: grid;
+      gap: 14px;
+      padding: 4px;
+    }
+    .deliverable-empty {
+      margin: 0;
+      padding: 16px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dlv-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .dlv-badge {
+      --tone: var(--accent);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 6px 11px;
+      border: 1px solid color-mix(in srgb, var(--tone) 45%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tone) 13%, transparent);
       font-size: 12px;
-      white-space: pre-wrap;
+      color: var(--soft);
+    }
+    .dlv-badge b { color: color-mix(in srgb, var(--tone) 86%, var(--white)); font-weight: 760; }
+    .dlv-badge.high { --tone: var(--rose); }
+    .dlv-badge.warn { --tone: var(--yellow); }
+    .dlv-badge.ok { --tone: var(--green); }
+    .dlv-badge.info { --tone: var(--cyan); }
+    .dlv-section {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.025);
+    }
+    .dlv-section.you {
+      border-color: rgba(155,116,255,.4);
+      background: rgba(155,116,255,.08);
+    }
+    .dlv-section h5 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--accent-2);
+    }
+    .dlv-section ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+    .dlv-section ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+    .dlv-section li { color: var(--soft); font-size: 14px; }
+    .dlv-section p { margin: 0; color: var(--soft); font-size: 14px; }
+    .dlv-message {
+      padding: 14px;
+      border: 1px solid rgba(53,213,139,.34);
+      border-left: 3px solid var(--green);
+      border-radius: 8px;
+      background: rgba(53,213,139,.08);
+    }
+    .dlv-message h5 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--green);
+    }
+    .dlv-message p {
+      margin: 0;
+      color: var(--white);
+      font-size: 14px;
+      line-height: 1.55;
     }
 
     .agent-grid {
@@ -769,6 +864,56 @@
       color: var(--muted);
       font-size: 14px;
     }
+
+    .hero-def { color: var(--white); font-weight: 760; }
+
+    .explainer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .explainer-card {
+      --tone: var(--muted);
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--tone);
+      border-radius: 8px;
+      background: rgba(255,255,255,.028);
+    }
+    .explainer-card.is-yes {
+      --tone: var(--green);
+      background: color-mix(in srgb, var(--green) 9%, transparent);
+      border-color: rgba(53,213,139,.3);
+      border-left-color: var(--green);
+    }
+    .explainer-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--tone);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .explainer-card p { margin: 0; color: var(--soft); font-size: 15px; }
+    .explainer-card b { color: var(--white); }
+    .explainer-example {
+      margin-top: 12px;
+      padding: 22px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: rgba(155,116,255,.07);
+    }
+    .explainer-example h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--accent-2);
+    }
+    .explainer-example p { margin: 0; color: var(--soft); font-size: 16px; }
+    .explainer-example b { color: var(--white); }
 
     .security-grid {
       display: grid;
@@ -971,7 +1116,7 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Pular para conteudo</a>
+  <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#topo" aria-label="Aliam">
@@ -992,6 +1137,7 @@
         </span>
       </a>
       <nav class="nav-links" aria-label="Principal">
+        <a href="#o-que-e">O que é</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#simulador">Simulador</a>
         <a href="#time">Time</a>
@@ -1007,18 +1153,13 @@
         <div>
           <p class="eyebrow"><span class="pulse-dot"></span> Agentes de IA para operações reais</p>
           <h1>Menos tarefa repetida. Mais tempo para decidir.</h1>
-          <p class="hero-copy">A Aliam cria agentes sob medida para assumir rotinas que consomem tempo, travam a equipe e fazem o dono virar central de tudo. O resultado: mais tempo para vender, atender melhor e enxergar a operação.</p>
+          <p class="hero-copy"><b class="hero-def">Um agente de IA é como um funcionário digital:</b> recebe uma tarefa, executa do início ao fim sozinho e chama uma pessoa quando precisa de uma decisão. A Aliam cria esses agentes sob medida para assumir rotinas que consomem tempo e travam a equipe &mdash; liberando você para vender, atender melhor e enxergar a operação.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#simulador" data-track="cta_hero_simular">Ver como funciona</a>
             <a class="btn btn-secondary" href="#contato" data-track="cta_hero_contato">Mapear minha rotina</a>
           </div>
-          <ul class="hero-proof">
-            <li class="proof-item"><strong>1a</strong><span>rotina mapeada antes de automatizar</span></li>
-            <li class="proof-item"><strong>8</strong><span>agentes com função clara no time</span></li>
-            <li class="proof-item"><strong>Aliam</strong><span>dados reais, sem clientes expostos</span></li>
-          </ul>
           <div class="pain-strip">
-            <div class="pain-item"><b>Equipe ocupada</b>Relatorio, mensagem e conferencia tomando hora de quem deveria vender.</div>
+            <div class="pain-item"><b>Equipe ocupada</b>Relatório, mensagem e conferência tomando hora de quem deveria vender.</div>
             <div class="pain-item"><b>Dono centralizado</b>Processo depende de alguém lembrar, cobrar, conferir e refazer.</div>
             <div class="pain-item"><b>Automação genérica</b>Ferramenta solta não entende exceção, regra e rotina real da empresa.</div>
           </div>
@@ -1038,22 +1179,22 @@
             </article>
             <article class="agent-node" data-pos="kiko">
               <div class="agent-head"><span class="avatar">KI</span><div><h3>Kiko</h3><span>copy e mensagem</span></div></div>
-              <p>Transforma acao operacional em mensagem clara para vender e atender.</p>
+              <p>Transforma ação operacional em mensagem clara para vender e atender.</p>
               <span class="status-pill">escrevendo</span>
             </article>
             <article class="agent-node" data-pos="chiquinha">
               <div class="agent-head"><span class="avatar">CH</span><div><h3>Chiquinha</h3><span>tecnologia</span></div></div>
-              <p>Conecta sistemas, valida rastreio e resolve a parte tecnica do fluxo.</p>
+              <p>Conecta sistemas, valida rastreio e resolve a parte técnica do fluxo.</p>
               <span class="status-pill">executando</span>
             </article>
             <article class="agent-node" data-pos="madruga">
               <div class="agent-head"><span class="avatar">SM</span><div><h3>Seu Madruga</h3><span>qualidade visual</span></div></div>
-              <p>Testa a experiencia como cliente, principalmente no celular.</p>
+              <p>Testa a experiência como cliente, principalmente no celular.</p>
               <span class="status-pill">validando</span>
             </article>
             <article class="agent-node" data-pos="girafales">
               <div class="agent-head"><span class="avatar">PG</span><div><h3>Professor</h3><span>segurança</span></div></div>
-              <p>Revisa superficie de risco, permissoes, webhook e autenticacao.</p>
+              <p>Garante que nada vaze: revisa acessos, permissões e a segurança do fluxo.</p>
               <span class="status-pill">auditando</span>
             </article>
             <article class="agent-node" data-pos="barriga">
@@ -1070,17 +1211,40 @@
       </div>
     </section>
 
+    <section id="o-que-e">
+      <div class="container">
+        <div class="section-head">
+          <h2>O que é um agente de IA, sem complicar.</h2>
+          <p>Antes de conhecer o time, a ideia em 30 segundos.</p>
+        </div>
+        <div class="explainer-grid">
+          <article class="explainer-card">
+            <span class="explainer-tag">Não é só um chatbot</span>
+            <p>Um chatbot <b>responde</b> uma pergunta e para por aí. Quem executa o resto &mdash; abrir a planilha, atualizar o sistema, cobrar o cliente &mdash; ainda é você.</p>
+          </article>
+          <article class="explainer-card is-yes">
+            <span class="explainer-tag">É um agente</span>
+            <p>Um agente <b>faz a tarefa inteira</b>: busca o dado, decide o próximo passo, executa e devolve pronto. E chama uma pessoa sempre que aparece uma exceção ou um risco.</p>
+          </article>
+        </div>
+        <div class="explainer-example">
+          <h3>Na prática</h3>
+          <p>Você diz: <b>“organize os leads de ontem”</b>. O agente classifica por prioridade, escreve a resposta dos urgentes, agenda o próximo contato e te manda um resumo &mdash; sem você abrir a planilha. Você só aprova.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section-alt" id="como-funciona">
       <div class="container">
         <div class="section-head">
-          <h2>Da demanda baguncada ao processo rodando.</h2>
+          <h2>Da demanda bagunçada ao processo rodando.</h2>
           <p>A página mostra o que interessa para o empresário: menos tarefa manual, mais previsibilidade e controle humano onde tem risco.</p>
         </div>
         <div class="process-grid">
           <article class="step"><strong>01</strong><h3>Processo mapeado</h3><p>Identificamos onde a equipe perde tempo, erra ou deixa dinheiro parado.</p></article>
           <article class="step"><strong>02</strong><h3>Agentes definidos</h3><p>Cada agente assume uma parte: triagem, tecnologia, texto, qualidade ou segurança.</p></article>
-          <article class="step"><strong>03</strong><h3>Rotina simulada</h3><p>A vitrine mostra consulta, classificacao, checklist, follow-up e registro.</p></article>
-          <article class="step"><strong>04</strong><h3>Humano no controle</h3><p>O repetitivo roda com agente. Aprovacao, excecao e risco ficam com gente.</p></article>
+          <article class="step"><strong>03</strong><h3>Rotina simulada</h3><p>A vitrine mostra consulta, classificação, checklist, follow-up e registro.</p></article>
+          <article class="step"><strong>04</strong><h3>Humano no controle</h3><p>O repetitivo roda com agente. Aprovação, exceção e risco ficam com gente.</p></article>
         </div>
       </div>
     </section>
@@ -1088,15 +1252,15 @@
     <section id="simulador">
       <div class="container">
         <div class="section-head">
-          <h2>Escolha uma dor e veja qual agente assume.</h2>
-          <p>A simulação para no agente com a habilidade certa e gera um TXT no formato do trabalho dele.</p>
+          <h2>Escolha uma dor (ou descreva a sua) e veja o agente trabalhar.</h2>
+          <p>O agente certo assume a tarefa e devolve um entregável pronto. Descreva sua situação real para ver no seu contexto.</p>
         </div>
         <div class="simulator">
-          <div class="scenario-list" role="group" aria-label="Cenarios simulados">
+          <div class="scenario-list" role="group" aria-label="Cenários disponíveis">
             <button class="scenario-btn" type="button" data-scenario="leads" aria-pressed="true"><strong>Leads sem resposta</strong><span>Triagem, prioridade e follow-up comercial.</span></button>
-            <button class="scenario-btn" type="button" data-scenario="planilhas" aria-pressed="false"><strong>Equipe presa em planilha</strong><span>Conferencia, padronizacao e alerta.</span></button>
-            <button class="scenario-btn" type="button" data-scenario="atendimento" aria-pressed="false"><strong>Atendimento repetitivo</strong><span>Classificacao, resposta base e escalonamento.</span></button>
-            <button class="scenario-btn" type="button" data-scenario="site" aria-pressed="false"><strong>Site e conversao</strong><span>Checklist tecnico, rastreio e melhorias.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="planilhas" aria-pressed="false"><strong>Equipe presa em planilha</strong><span>Conferência, padronização e alerta.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="atendimento" aria-pressed="false"><strong>Atendimento repetitivo</strong><span>Classificação, resposta base e escalonamento.</span></button>
+            <button class="scenario-btn" type="button" data-scenario="site" aria-pressed="false"><strong>Site e conversão</strong><span>Checklist técnico, rastreio e melhorias.</span></button>
             <button class="scenario-btn" type="button" data-scenario="copy" aria-pressed="false"><strong>Mensagem que não converte</strong><span>Copy, CTA e abordagem comercial.</span></button>
             <button class="scenario-btn" type="button" data-scenario="whatsapp" aria-pressed="false"><strong>WhatsApp bagunçado</strong><span>Fluxo, status e passagem para humano.</span></button>
             <button class="scenario-btn" type="button" data-scenario="idioma" aria-pressed="false"><strong>Aprender um novo idioma</strong><span>Inglês com rotina, prática e acompanhamento.</span></button>
@@ -1104,22 +1268,31 @@
           <div class="sim-panel">
             <div class="sim-head">
               <div><h3 id="scenarioTitle">Leads sem resposta</h3><span id="scenarioSubtitle">Triagem, prioridade e follow-up comercial.</span></div>
-              <button class="btn btn-secondary" type="button" id="runScenario">Rodar simulação</button>
+              <button class="btn btn-primary" type="button" id="runScenario">Rodar com meu caso</button>
+            </div>
+            <div class="sim-context">
+              <label for="simContext" id="simContextLabel">Sua situação real (opcional)</label>
+              <textarea id="simContext" placeholder="Ex: tenho 12 leads do Instagram da semana passada que ninguém respondeu ainda..."></textarea>
             </div>
             <div class="workstream" id="workstream" aria-live="polite"></div>
             <div class="sim-output">
-              <h4>Resultado esperado</h4>
+              <h4>O que o agente faz aqui</h4>
               <ul id="scenarioOutput"></ul>
             </div>
             <div class="artifact-panel" id="artifactPanel">
               <div class="artifact-head">
                 <div>
-                  <h4>Entregável gerado</h4>
-                  <span id="artifactStatus">Clique em “Rodar simulação” para gerar um exemplo.</span>
+                  <h4>Entregável do agente</h4>
+                  <span id="artifactStatus">Clique em “Rodar com meu caso” para gerar um exemplo.</span>
                 </div>
-                <a class="btn btn-primary" id="downloadArtifact" href="#" download="aliam-simulacao.txt" data-track="download_artifact">Baixar TXT</a>
+                <div class="artifact-actions">
+                  <button class="btn btn-quiet" type="button" id="copyArtifact" data-track="copy_artifact" hidden>Copiar</button>
+                  <a class="btn btn-primary" id="downloadArtifact" href="#" download="aliam-entregavel.txt" data-track="download_artifact">Baixar resumo</a>
+                </div>
               </div>
-              <pre class="artifact-preview" id="artifactPreview">A simulação vai gerar um arquivo no formato do agente responsável por essa dor.</pre>
+              <div class="deliverable" id="deliverable">
+                <p class="deliverable-empty">O agente responsável por essa dor vai montar um entregável pronto aqui.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1150,11 +1323,11 @@
       <div class="container">
         <div class="section-head">
           <h2>Onde a empresa sente ganho primeiro.</h2>
-          <p>A página não tenta explicar IA. Ela mostra dor operacional, fluxo de agente e resultado possível.</p>
+          <p>Menos teoria, mais resultado: dor operacional, fluxo do agente e o ganho possível em cada área.</p>
         </div>
         <div class="cases">
-          <article class="case-card"><h3>Comercial</h3><dl><div><dt>Antes</dt><dd>Lead chega, ninguem prioriza, follow-up depende de lembranca.</dd></div><div><dt>Depois</dt><dd>Agente classifica, resume, sugere resposta e agenda proximo contato.</dd></div></dl></article>
-          <article class="case-card"><h3>Operacao</h3><dl><div><dt>Antes</dt><dd>Equipe perde hora com planilha, copia e cola, conferencia e retrabalho.</dd></div><div><dt>Depois</dt><dd>Agentes padronizam dados, apontam excecoes e geram resumo acionavel.</dd></div></dl></article>
+          <article class="case-card"><h3>Comercial</h3><dl><div><dt>Antes</dt><dd>Lead chega, ninguém prioriza, follow-up depende de lembrança.</dd></div><div><dt>Depois</dt><dd>Agente classifica, resume, sugere resposta e agenda próximo contato.</dd></div></dl></article>
+          <article class="case-card"><h3>Operação</h3><dl><div><dt>Antes</dt><dd>Equipe perde hora com planilha, copia e cola, conferência e retrabalho.</dd></div><div><dt>Depois</dt><dd>Agentes padronizam dados, apontam exceções e geram resumo acionável.</dd></div></dl></article>
           <article class="case-card"><h3>Atendimento</h3><dl><div><dt>Antes</dt><dd>Perguntas iguais tomam tempo e casos importantes chegam sem contexto.</dd></div><div><dt>Depois</dt><dd>Agente resolve o comum, coleta dados e escala o que precisa de humano.</dd></div></dl></article>
         </div>
       </div>
@@ -1235,268 +1408,260 @@
     const scenarios = {
       leads: {
         title: "Leads sem resposta",
-        subtitle: "Recuperacao comercial com cadencia e proximo contato claro.",
+        subtitle: "Recuperação comercial com cadência e próximo contato claro.",
         agent: "Seu Barriga",
-        output: ["Simulacao para no Seu Barriga.", "Lead parado ganha status, prioridade e cadencia.", "TXT sai em formato de follow-up comercial.", "Humano aprova a abordagem antes de enviar."],
-        artifactTitle: "seu-barriga-follow-up-leads.txt",
-        artifact: [
-          "SEU BARRIGA - RECUPERACAO DE LEAD SEM RESPOSTA",
-          "",
-          "Lead analisado:",
-          "- Lead veio do WhatsApp ou formulario.",
-          "- Interesse declarado: entender automacao com agentes.",
-          "- Status inicial: sem resposta registrada.",
-          "",
-          "Classificacao:",
-          "- Prioridade: alta",
-          "- Motivo: pediu contato e ficou sem retorno",
-          "- Risco: perder oportunidade quente por falta de cadencia",
-          "",
-          "Plano de cobranca de retorno:",
-          "1. Enviar resposta curta ainda hoje.",
-          "2. Se nao responder, fazer novo toque em 24 horas.",
-          "3. Se abrir conversa, levar para diagnostico de rotina.",
-          "",
-          "Mensagem sugerida pelo Seu Barriga:",
-          "Ola, vi que voce pediu contato sobre agentes da Aliam e ainda nao fechamos esse retorno. Posso mapear uma rotina simples da sua operacao para ver se faz sentido automatizar?",
-          "",
-          "Registro para CRM:",
-          "- Status: follow-up pendente",
-          "- Responsavel: comercial",
-          "- Proximo passo: responder em ate 2 horas uteis",
-          "",
-          "Observacao:",
-          "Exemplo ficticio. Nenhum dado real foi usado."
-        ].join("\\n"),
-        steps: [
-          ["AT", "Atlas", "Identifica que a dor e comercial."],
-          ["CV", "Chaves", "Confere origem e contexto do contato."],
-          ["SB", "Seu Barriga", "Assume recuperacao do lead."]
+        file: "seu-barriga-follow-up.txt",
+        summary: [
+          "Recebe os leads parados e classifica por prioridade.",
+          "Escreve a primeira resposta e define a cadência de retorno.",
+          "Deixa o registro pronto para o CRM — você só aprova e envia."
         ],
-        targetIndex: 2
+        steps: [
+          ["AT", "Atlas", "Identifica que a dor é comercial."],
+          ["CV", "Chaves", "Confere origem e contexto do contato."],
+          ["SB", "Seu Barriga", "Assume a recuperação do lead."]
+        ],
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Prioridade", value: "Alta", tone: "high" },
+            { label: "Status", value: "Follow-up pendente", tone: "info" },
+            { label: "Responder em", value: "até 2h úteis", tone: "warn" }
+          ],
+          sections: [
+            { title: "O que o agente identificou", type: "ul", items: [
+              "O lead pediu contato e ficou sem retorno.",
+              "Interesse declarado: entender automação com agentes.",
+              "Risco: perder uma oportunidade quente por falta de cadência."
+            ] },
+            { title: "Plano de retorno", type: "ol", items: [
+              "Enviar uma resposta curta ainda hoje.",
+              "Sem resposta? Novo toque em 24 horas.",
+              "Abriu conversa? Levar para um diagnóstico de rotina."
+            ] }
+          ],
+          message: { title: "Mensagem pronta para enviar", text: "Olá! Vi que você pediu contato sobre os agentes da Aliam e a gente ainda não fechou esse retorno. Posso mapear uma rotina simples da sua operação para ver se faz sentido automatizar?" }
+        }
       },
       planilhas: {
         title: "Equipe presa em planilha",
-        subtitle: "Conferencia, padronizacao e alerta antes do erro virar custo.",
+        subtitle: "Conferência, padronização e alerta antes do erro virar custo.",
         agent: "Chiquinha",
-        output: ["Simulacao para na Chiquinha.", "Campos inconsistentes sao destacados.", "Dados repetidos viram alerta.", "TXT sai em formato tecnico-operacional."],
-        artifactTitle: "chiquinha-diagnostico-planilha.txt",
-        artifact: [
-          "CHIQUINHA - DIAGNOSTICO DE PLANILHA OPERACIONAL",
-          "",
-          "Entrada analisada:",
-          "cliente;status;valor;acao",
-          "Empresa A;sem retorno;1200;enviar follow-up",
-          "Empresa B;pago;850;registrar CRM",
-          "Empresa C;duplicado;850;revisar humano",
-          "Empresa D;pendente;;pedir valor",
-          "",
-          "Saida organizada pelo agente:",
-          "1. Empresa A -> follow-up comercial sugerido",
-          "2. Empresa B -> registro pronto para CRM",
-          "3. Empresa C -> alerta de possivel duplicidade",
-          "4. Empresa D -> dado faltante: valor",
-          "",
-          "Diagnostico tecnico:",
-          "- A planilha mistura status comercial, financeiro e tarefa operacional.",
-          "- Tem dado faltante em valor.",
-          "- Tem possivel duplicidade de valor.",
-          "- Da para automatizar leitura, validacao e resumo, mas decisao sensivel fica com humano.",
-          "",
-          "Proximo passo da Chiquinha:",
-          "1. Definir campos obrigatorios.",
-          "2. Separar regra automatica de excecao humana.",
-          "3. Criar rotina de alerta para duplicidade e dado faltante.",
-          "",
-          "Observacao:",
-          "Exemplo ficticio. Nenhum dado real foi usado."
-        ].join("\\n"),
-        steps: [
-          ["AT", "Atlas", "Define que a dor e operacao."],
-          ["PG", "Professor", "Sinaliza cuidado com permissao."],
-          ["CH", "Chiquinha", "Assume diagnostico tecnico da planilha."]
+        file: "chiquinha-diagnostico-planilha.txt",
+        summary: [
+          "Lê a planilha e padroniza os campos automaticamente.",
+          "Destaca dados faltantes e possíveis duplicidades.",
+          "Gera um resumo acionável — a decisão sensível fica com humano."
         ],
-        targetIndex: 2
+        steps: [
+          ["AT", "Atlas", "Define que a dor é de operação."],
+          ["PG", "Professor", "Sinaliza o cuidado com permissões."],
+          ["CH", "Chiquinha", "Assume o diagnóstico técnico da planilha."]
+        ],
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Linhas lidas", value: "4", tone: "info" },
+            { label: "Alertas", value: "2", tone: "warn" },
+            { label: "Pronto p/ CRM", value: "1", tone: "ok" }
+          ],
+          sections: [
+            { title: "O que o agente organizou", type: "ol", items: [
+              "Empresa A → follow-up comercial sugerido.",
+              "Empresa B → registro pronto para o CRM.",
+              "Empresa C → alerta de possível duplicidade.",
+              "Empresa D → dado faltante: valor."
+            ] },
+            { title: "Diagnóstico técnico", type: "ul", items: [
+              "A planilha mistura status comercial, financeiro e tarefa operacional.",
+              "Há dado faltante e possível duplicidade de valor.",
+              "Dá para automatizar leitura, validação e resumo — a exceção fica com humano."
+            ] },
+            { title: "Próximo passo", type: "p", text: "Definir os campos obrigatórios, separar regra automática de exceção humana e criar alerta para duplicidade e dado faltante." }
+          ],
+          message: null
+        }
       },
       atendimento: {
         title: "Atendimento repetitivo",
         subtitle: "Resposta comum, coleta de dados e escala para humano.",
         agent: "Chaves",
-        output: ["Simulacao para no Chaves.", "Perguntas comuns recebem resposta base.", "Casos urgentes sao separados.", "TXT sai como roteiro de atendimento."],
-        artifactTitle: "chaves-roteiro-atendimento.txt",
-        artifact: [
-          "CHAVES - ROTEIRO DE ATENDIMENTO REPETITIVO",
-          "",
-          "Pergunta frequente detectada:",
-          "\"Quero saber como funciona e quanto custa.\"",
-          "",
-          "Resposta base sugerida:",
-          "A Aliam comeca mapeando uma rotina repetitiva da sua empresa. Depois desenha um fluxo com agentes, limites de seguranca e pontos de aprovacao humana.",
-          "",
-          "Dados que o agente deve coletar:",
-          "- Qual processo mais consome tempo?",
-          "- Quantas pessoas executam essa rotina?",
-          "- Existe CRM, planilha ou WhatsApp no fluxo?",
-          "- Que decisao precisa continuar com humano?",
-          "",
-          "Quando o Chaves responde:",
-          "- pergunta recorrente",
-          "- coleta de contexto",
-          "- orientacao inicial sem promessa comercial",
-          "",
-          "Quando escalar para humano:",
-          "- houver preco, contrato, dado sensivel ou decisao critica.",
-          "",
-          "Observacao:",
-          "Exemplo ficticio. Nenhum dado real foi usado."
-        ].join("\\n"),
-        steps: [
-          ["AT", "Atlas", "Classifica que a dor e atendimento."],
-          ["KI", "Kiko", "Ajusta tom da resposta base."],
-          ["CV", "Chaves", "Assume triagem e resposta repetitiva."]
+        file: "chaves-roteiro-atendimento.txt",
+        summary: [
+          "Responde as perguntas que se repetem todo dia.",
+          "Coleta o contexto que a equipe precisa para continuar.",
+          "Separa o urgente e chama o humano quando vira exceção."
         ],
-        targetIndex: 2
+        steps: [
+          ["AT", "Atlas", "Classifica que a dor é de atendimento."],
+          ["KI", "Kiko", "Ajusta o tom da resposta base."],
+          ["CV", "Chaves", "Assume a triagem e a resposta repetitiva."]
+        ],
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Tipo", value: "Pergunta frequente", tone: "info" },
+            { label: "Ação", value: "Responde + coleta", tone: "ok" },
+            { label: "Escalar se", value: "preço ou contrato", tone: "warn" }
+          ],
+          sections: [
+            { title: "Pergunta detectada", type: "p", text: "“Quero saber como funciona e quanto custa.”" },
+            { title: "Dados que o agente coleta", type: "ul", items: [
+              "Qual processo mais consome tempo?",
+              "Quantas pessoas executam essa rotina?",
+              "Existe CRM, planilha ou WhatsApp no fluxo?",
+              "Que decisão precisa continuar com humano?"
+            ] },
+            { title: "Quando escalar para humano", type: "ul", items: [
+              "Quando houver preço, contrato, dado sensível ou decisão crítica."
+            ] }
+          ],
+          message: { title: "Resposta base sugerida", text: "A Aliam começa mapeando uma rotina repetitiva da sua empresa. Depois desenha um fluxo com agentes, limites de segurança e pontos de aprovação humana." }
+        }
       },
       site: {
-        title: "Site e conversao",
-        subtitle: "Checklist tecnico, rastreio e melhoria de CTA.",
+        title: "Site e conversão",
+        subtitle: "Checklist técnico, rastreio e melhoria de CTA.",
         agent: "Seu Madruga",
-        output: ["Simulacao para no Seu Madruga.", "Layout, mobile e CTA entram no checklist.", "Rastreio fica como item tecnico.", "TXT sai em formato de QA visual."],
-        artifactTitle: "seu-madruga-checklist-site.txt",
-        artifact: [
-          "SEU MADRUGA - CHECKLIST DE SITE E CONVERSAO",
-          "",
-          "Visual e experiencia:",
-          "[ok] Headline comunica dor operacional",
-          "[ok] CTA principal leva para diagnostico",
-          "[ok] Botoes cabem no mobile",
-          "[ok] Cores seguem base do site Aliam",
-          "",
-          "Rastreio e tecnica para Chiquinha:",
-          "[ok] WhatsApp tem UTM de campanha",
-          "[ok] Evento dataLayer preparado",
-          "[alerta] Confirmar numero oficial antes de publicar",
-          "[alerta] Validar politica de privacidade se entrar pixel",
-          "",
-          "Proximo passo sugerido:",
-          "Publicar em preview antes de trocar a home principal. Medir clique em CTA depois da publicacao.",
-          "",
-          "Observacao:",
-          "Exemplo ficticio. Nenhum dado real foi usado."
-        ].join("\\n"),
-        steps: [
-          ["AT", "Atlas", "Fecha escopo da melhoria."],
-          ["CH", "Chiquinha", "Confere SEO, HTML e evento."],
-          ["SM", "Seu Madruga", "Assume QA visual e responsivo."]
+        file: "seu-madruga-checklist-site.txt",
+        summary: [
+          "Testa o site como cliente, com foco no celular.",
+          "Confere CTA, layout, rastreio e pontos que travam a conversão.",
+          "Entrega um checklist com o que está ok e o que precisa de atenção."
         ],
-        targetIndex: 2
+        steps: [
+          ["AT", "Atlas", "Fecha o escopo da melhoria."],
+          ["CH", "Chiquinha", "Confere SEO, HTML e eventos."],
+          ["SM", "Seu Madruga", "Assume o QA visual e responsivo."]
+        ],
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Itens OK", value: "6", tone: "ok" },
+            { label: "Alertas", value: "2", tone: "warn" }
+          ],
+          sections: [
+            { title: "Visual e experiência", type: "ul", items: [
+              "Headline comunica a dor operacional.",
+              "CTA principal leva para o diagnóstico.",
+              "Botões cabem no mobile.",
+              "Cores seguem a base do site."
+            ] },
+            { title: "Rastreio e técnica", type: "ul", items: [
+              "WhatsApp com UTM de campanha.",
+              "Evento de dataLayer preparado.",
+              "Alerta: confirmar o número oficial antes de publicar.",
+              "Alerta: validar a política de privacidade se entrar pixel."
+            ] },
+            { title: "Próximo passo", type: "p", text: "Publicar em preview antes de trocar a home principal e medir o clique no CTA depois da publicação." }
+          ],
+          message: null
+        }
       },
       copy: {
         title: "Mensagem que não converte",
         subtitle: "Copy, CTA e abordagem comercial sem promessa torta.",
         agent: "Kiko",
-        output: ["Simulacao para no Kiko.", "Mensagem fica mais clara e vendavel.", "Promessa exagerada sai do texto.", "TXT sai como bloco de copy pronto para revisar."],
-        artifactTitle: "kiko-copy-comercial.txt",
-        artifact: [
-          "KIKO - BLOCO DE COPY COMERCIAL",
-          "",
-          "Problema detectado:",
-          "- A mensagem fala de tecnologia antes de falar da dor do cliente.",
-          "- CTA fica abstrato e nao diz qual e o proximo passo.",
-          "",
-          "Headline sugerida:",
-          "Menos tarefa repetida. Mais tempo para vender, atender e decidir.",
-          "",
-          "Subtexto:",
-          "A Aliam mapeia uma rotina da sua empresa e desenha um primeiro fluxo com agentes, integracoes e supervisao humana.",
-          "",
-          "CTA principal:",
-          "Mapear minha rotina",
-          "",
-          "Cuidado de promessa:",
-          "- Nao prometer prazo fechado sem escopo.",
-          "- Nao prometer automacao total.",
-          "- Falar de primeiro fluxo viavel.",
-          "",
-          "Observacao:",
-          "Exemplo ficticio. Nenhum dado real foi usado."
-        ].join("\\n"),
-        steps: [
-          ["AT", "Atlas", "Define objetivo comercial."],
-          ["SB", "Seu Barriga", "Aponta a dor de lead parado."],
-          ["KI", "Kiko", "Assume copy e CTA."]
+        file: "kiko-copy-comercial.txt",
+        summary: [
+          "Reescreve a mensagem começando pela dor do cliente.",
+          "Deixa o CTA claro e direto ao próximo passo.",
+          "Remove a promessa exagerada antes de publicar."
         ],
-        targetIndex: 2
+        steps: [
+          ["AT", "Atlas", "Define o objetivo comercial."],
+          ["SB", "Seu Barriga", "Aponta a dor de lead parado."],
+          ["KI", "Kiko", "Assume a copy e o CTA."]
+        ],
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Foco", value: "Clareza + CTA", tone: "info" }
+          ],
+          sections: [
+            { title: "Problema detectado", type: "ul", items: [
+              "A mensagem fala de tecnologia antes da dor do cliente.",
+              "O CTA é abstrato e não diz qual é o próximo passo."
+            ] },
+            { title: "Cuidados de promessa", type: "ul", items: [
+              "Não prometer prazo fechado sem escopo.",
+              "Não prometer automação total.",
+              "Falar de um primeiro fluxo viável."
+            ] }
+          ],
+          message: { title: "Headline + CTA sugeridos", text: "Menos tarefa repetida. Mais tempo para vender, atender e decidir. → Botão: Mapear minha rotina." }
+        }
       },
       whatsapp: {
         title: "WhatsApp bagunçado",
         subtitle: "Fluxo, status e passagem para humano sem perder conversa.",
         agent: "Dona Florinda",
-        output: ["Simulacao para na Dona Florinda.", "Conversa ganha status e etapa.", "Passagem para humano fica prevista.", "TXT sai como desenho de atendimento."],
-        artifactTitle: "dona-florinda-whatsapp-atendimento.txt",
-        artifact: [
-          "DONA FLORINDA - ORGANIZACAO DE WHATSAPP",
-          "",
-          "Entrada:",
-          "- Cliente chama no WhatsApp.",
-          "- Nao existe status claro.",
-          "- Conversa depende de alguem lembrar de responder.",
-          "",
-          "Fluxo sugerido:",
-          "1. Capturar nome, empresa e dor principal.",
-          "2. Classificar: comercial, suporte, financeiro ou tecnico.",
-          "3. Criar status: novo, em triagem, aguardando humano, concluido.",
-          "4. Se for oportunidade, enviar para CRM com resumo.",
-          "5. Se tiver risco, escalar antes de qualquer acao externa.",
-          "",
-          "Mensagem de passagem para humano:",
-          "Entendi o contexto. Vou passar isso para uma pessoa da Aliam com o resumo da conversa para ela continuar sem voce repetir tudo.",
-          "",
-          "Observacao:",
-          "Exemplo ficticio. Nenhum dado real foi usado."
-        ].join("\\n"),
+        file: "dona-florinda-whatsapp.txt",
+        summary: [
+          "Organiza as conversas soltas com status claro.",
+          "Define a ordem e a etapa de cada atendimento.",
+          "Prevê a passagem para humano sem o cliente repetir tudo."
+        ],
         steps: [
-          ["AT", "Atlas", "Define que a dor e fluxo de canal."],
+          ["AT", "Atlas", "Define que a dor é de fluxo de canal."],
           ["CV", "Chaves", "Coleta o contexto da conversa."],
           ["DF", "Dona Florinda", "Assume status, ordem e passagem."]
         ],
-        targetIndex: 2
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Status criados", value: "4", tone: "info" },
+            { label: "Passagem p/ humano", value: "prevista", tone: "ok" }
+          ],
+          sections: [
+            { title: "Fluxo sugerido", type: "ol", items: [
+              "Capturar nome, empresa e dor principal.",
+              "Classificar: comercial, suporte, financeiro ou técnico.",
+              "Criar status: novo, em triagem, aguardando humano, concluído.",
+              "Oportunidade? Enviar ao CRM com resumo.",
+              "Risco? Escalar antes de qualquer ação externa."
+            ] }
+          ],
+          message: { title: "Mensagem de passagem para humano", text: "Entendi o contexto. Vou passar para uma pessoa da Aliam com o resumo da conversa, para ela continuar sem você precisar repetir tudo." }
+        }
       },
       idioma: {
         title: "Aprender um novo idioma",
-        subtitle: "Ingles com rotina, pratica e acompanhamento de evolucao.",
+        subtitle: "Inglês com rotina, prática e acompanhamento de evolução.",
         agent: "Flue",
-        output: ["Simulacao para no Flue.", "Objetivo de idioma vira rotina semanal.", "Pratica e revisao entram no plano.", "TXT sai como trilha de estudo."],
-        artifactTitle: "flue-plano-ingles.txt",
-        artifact: [
-          "FLUE - PLANO DE INGLES APLICADO",
-          "",
-          "Objetivo:",
-          "- Melhorar ingles para trabalho, viagem ou atendimento.",
-          "- Criar rotina simples de pratica sem depender de aula longa.",
-          "- Acompanhar vocabulario, conversacao e revisao.",
-          "",
-          "Plano sugerido:",
-          "1. Definir nivel atual e objetivo dos proximos 30 dias.",
-          "2. Separar vocabulario por contexto real: vendas, reuniao, viagem ou suporte.",
-          "3. Praticar frases curtas com correcao e repeticao.",
-          "4. Registrar erros recorrentes e revisar toda semana.",
-          "5. Ajustar dificuldade conforme evolucao.",
-          "",
-          "Exemplo de rotina:",
-          "- 10 minutos de vocabulario aplicado.",
-          "- 10 minutos de escuta ou leitura curta.",
-          "- 10 minutos de resposta falada ou escrita.",
-          "",
-          "Observacao:",
-          "Exemplo de estudo. Nenhum dado pessoal foi usado."
-        ].join("\\n"),
-        steps: [
-          ["AT", "Atlas", "Define objetivo de aprendizado."],
-          ["KI", "Kiko", "Ajusta tom e exemplos de pratica."],
-          ["FL", "Flue", "Monta rotina de ingles e acompanhamento."]
+        file: "flue-plano-ingles.txt",
+        summary: [
+          "Transforma o objetivo de idioma em uma rotina semanal.",
+          "Coloca prática e revisão dentro de blocos curtos.",
+          "Acompanha vocabulário, conversação e evolução."
         ],
-        targetIndex: 2
+        steps: [
+          ["AT", "Atlas", "Define o objetivo de aprendizado."],
+          ["KI", "Kiko", "Ajusta o tom e os exemplos de prática."],
+          ["FL", "Flue", "Monta a rotina de inglês e o acompanhamento."]
+        ],
+        targetIndex: 2,
+        deliverable: {
+          badges: [
+            { label: "Foco", value: "Inglês aplicado", tone: "info" },
+            { label: "Rotina", value: "30 min/dia", tone: "ok" }
+          ],
+          sections: [
+            { title: "Plano sugerido", type: "ol", items: [
+              "Definir o nível atual e o objetivo dos próximos 30 dias.",
+              "Separar vocabulário por contexto real: vendas, reunião, viagem ou suporte.",
+              "Praticar frases curtas com correção e repetição.",
+              "Registrar erros recorrentes e revisar toda semana.",
+              "Ajustar a dificuldade conforme a evolução."
+            ] },
+            { title: "Exemplo de rotina diária", type: "ul", items: [
+              "10 minutos de vocabulário aplicado.",
+              "10 minutos de escuta ou leitura curta.",
+              "10 minutos de resposta falada ou escrita."
+            ] }
+          ],
+          message: null
+        }
       }
     };
 
@@ -1506,15 +1671,76 @@
     const workstream = document.querySelector("#workstream");
     const output = document.querySelector("#scenarioOutput");
     const runButton = document.querySelector("#runScenario");
-    const artifactPreview = document.querySelector("#artifactPreview");
+    const deliverableEl = document.querySelector("#deliverable");
     const artifactStatus = document.querySelector("#artifactStatus");
     const downloadArtifact = document.querySelector("#downloadArtifact");
+    const copyArtifact = document.querySelector("#copyArtifact");
+    const simContext = document.querySelector("#simContext");
     const routineForm = document.querySelector("#routineForm");
     const routineResult = document.querySelector("#routineResult");
     const focusRoutineForm = document.querySelector("#focusRoutineForm");
     let activeScenario = "leads";
     let stepTimer;
     let artifactUrl;
+    let lastArtifactText = "";
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+    }
+
+    function buildDeliverableHtml(scenario, context) {
+      const d = scenario.deliverable;
+      const parts = [];
+      if (d.badges && d.badges.length) {
+        parts.push('<div class="dlv-badges">' + d.badges.map(b =>
+          `<span class="dlv-badge ${b.tone || "info"}">${escapeHtml(b.label)} <b>${escapeHtml(b.value)}</b></span>`
+        ).join("") + "</div>");
+      }
+      if (context) {
+        parts.push(`<div class="dlv-section you"><h5>Sua situação (informada por você)</h5><p>${escapeHtml(context)}</p></div>`);
+      }
+      (d.sections || []).forEach(section => {
+        let body;
+        if (section.type === "p") {
+          body = `<p>${escapeHtml(section.text)}</p>`;
+        } else {
+          const tag = section.type === "ol" ? "ol" : "ul";
+          body = `<${tag}>` + section.items.map(item => `<li>${escapeHtml(item)}</li>`).join("") + `</${tag}>`;
+        }
+        parts.push(`<div class="dlv-section"><h5>${escapeHtml(section.title)}</h5>${body}</div>`);
+      });
+      if (d.message) {
+        parts.push(`<div class="dlv-message"><h5>${escapeHtml(d.message.title)}</h5><p>${escapeHtml(d.message.text)}</p></div>`);
+      }
+      return parts.join("");
+    }
+
+    function buildDeliverableText(scenario, context) {
+      const d = scenario.deliverable;
+      const lines = [`${scenario.agent.toUpperCase()} — ${scenario.title}`, ""];
+      if (d.badges && d.badges.length) {
+        lines.push(d.badges.map(b => `${b.label}: ${b.value}`).join("  |  "), "");
+      }
+      if (context) {
+        lines.push("Sua situação (informada por você):", context, "");
+      }
+      (d.sections || []).forEach(section => {
+        lines.push(section.title + ":");
+        if (section.type === "p") {
+          lines.push(section.text);
+        } else {
+          section.items.forEach((item, index) => {
+            lines.push((section.type === "ol" ? `${index + 1}. ` : "- ") + item);
+          });
+        }
+        lines.push("");
+      });
+      if (d.message) {
+        lines.push(d.message.title + ":", d.message.text, "");
+      }
+      lines.push("— Exemplo gerado no seu navegador. Nenhum dado foi enviado a servidores.");
+      return lines.join("\n");
+    }
 
     function renderScenario(key) {
       activeScenario = key;
@@ -1529,28 +1755,34 @@
         card.innerHTML = `<div class="mini-avatar">${step[0]}</div><h4>${step[1]}</h4><p>${step[2]}</p>`;
         workstream.appendChild(card);
       });
-      scenario.output.forEach(item => {
+      scenario.summary.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
         output.appendChild(li);
       });
-      artifactStatus.textContent = `Clique em “Rodar simulação” para acionar ${scenario.agent}.`;
-      artifactPreview.textContent = "A simulação vai gerar um arquivo no formato do agente responsável por essa dor.";
+      deliverableEl.innerHTML = '<p class="deliverable-empty">O agente responsável por essa dor vai montar um entregável pronto aqui.</p>';
+      artifactStatus.textContent = `Clique em “Rodar com meu caso” para acionar ${scenario.agent}.`;
+      copyArtifact.hidden = true;
       downloadArtifact.setAttribute("href", "#");
-      downloadArtifact.setAttribute("download", "aliam-simulacao.txt");
+      downloadArtifact.setAttribute("download", "aliam-entregavel.txt");
     }
 
     function generateArtifact() {
       const scenario = scenarios[activeScenario];
+      const context = simContext ? simContext.value.trim() : "";
       if (artifactUrl) URL.revokeObjectURL(artifactUrl);
-      artifactPreview.textContent = scenario.artifact;
-      artifactStatus.textContent = `Arquivo pronto: ${scenario.artifactTitle}`;
-      const blob = new Blob([scenario.artifact], { type: "text/plain;charset=utf-8" });
+      deliverableEl.innerHTML = buildDeliverableHtml(scenario, context);
+      lastArtifactText = buildDeliverableText(scenario, context);
+      artifactStatus.textContent = context
+        ? `${scenario.agent} montou o entregável com a sua situação.`
+        : `${scenario.agent} montou o entregável de exemplo.`;
+      copyArtifact.hidden = false;
+      const blob = new Blob([lastArtifactText], { type: "text/plain;charset=utf-8" });
       artifactUrl = URL.createObjectURL(blob);
       downloadArtifact.href = artifactUrl;
-      downloadArtifact.download = scenario.artifactTitle;
+      downloadArtifact.download = scenario.file;
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: "aliam_agent_artifact_generated", scenario: activeScenario });
+      window.dataLayer.push({ event: "aliam_agent_artifact_generated", scenario: activeScenario, with_context: Boolean(context) });
     }
 
     function animateScenario() {
@@ -1582,6 +1814,18 @@
     runButton.addEventListener("click", animateScenario);
     renderScenario(activeScenario);
 
+    copyArtifact.addEventListener("click", async () => {
+      if (!lastArtifactText) return;
+      try {
+        await navigator.clipboard.writeText(lastArtifactText);
+        const original = copyArtifact.textContent;
+        copyArtifact.textContent = "Copiado!";
+        window.setTimeout(() => { copyArtifact.textContent = original; }, 1600);
+      } catch (err) {
+        artifactStatus.textContent = "Não foi possível copiar automaticamente. Use o botão Baixar resumo.";
+      }
+    });
+
     focusRoutineForm.addEventListener("click", () => {
       document.querySelector("#routineText").focus();
     });
@@ -1592,12 +1836,12 @@
       const type = document.querySelector("#routineType").value;
       const routine = document.querySelector("#routineText").value.trim();
       const message = [
-        "Ola, quero mapear uma rotina com agentes da Aliam.",
+        "Olá, quero mapear uma rotina com agentes da Aliam.",
         "",
         `Nome/empresa: ${name}`,
         `Tipo de rotina: ${type}`,
-        `Descricao: ${routine || "Ainda vou detalhar no atendimento."}`
-      ].join("\\n");
+        `Descrição: ${routine || "Ainda vou detalhar no atendimento."}`
+      ].join("\n");
       const url = `https://wa.me/554988132974?text=${encodeURIComponent(message)}&utm_source=site&utm_medium=form&utm_campaign=vitrine_agentes_v5`;
       routineResult.classList.add("is-visible");
       routineResult.textContent = "Mensagem pronta. ";
